@@ -1,13 +1,13 @@
-import type { DefaultTheme } from "styled-components";
+import type {DefaultTheme} from 'styled-components'
 
 enum Colors {
-  base = "#fff",
-  grayish_blue = "#98a1b0",
-  cyan_blue = "#3f7ef8",
-  green = "#2ccd48",
-  blue_magenta = "#3a393f",
-  brown = "#dca048",
-  watermelon = "#ff7e85",
+  base = '#fff',
+  grayish_blue = '#98a1b0',
+  cyan_blue = '#3f7ef8',
+  green = '#2ccd48',
+  blue_magenta = '#3a393f',
+  brown = '#dca048',
+  watermelon = '#ff7e85',
 }
 enum Weights {
   normal = 500,
@@ -39,16 +39,16 @@ const theme: DefaultTheme = {
     },
   },
   motion: {
-    enabled: "@media (prefers-reduced-motion: no-preference)",
+    enabled: '@media (prefers-reduced-motion: no-preference)',
   },
   mode: {
-    dark: "@media (prefers-color-scheme: dark)",
+    dark: '@media (prefers-color-scheme: dark)',
   },
   queries: {
     phone: `(max-width: ${Breakpoints.phone / 16}rem)`,
     tablet: `(max-width: ${Breakpoints.tablet / 16}rem)`,
     laptop: `(max-width: ${Breakpoints.laptop / 16}rem)`,
   },
-};
+}
 
-export { theme };
+export {theme}

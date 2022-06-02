@@ -1,145 +1,145 @@
-import * as React from "react";
+import * as React from 'react'
 
 import type {
   ActionFunction,
   LoaderFunction,
   MetaFunction,
-} from "@remix-run/node";
-import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
-import { createUser, getUserByEmail } from "~/models/user.server";
-import { createUserSession, getUserId } from "~/session.server";
-import { json, redirect } from "@remix-run/node";
-import { safeRedirect, validateEmail } from "~/utils";
+} from '@remix-run/node'
+import {Form, Link, useActionData, useSearchParams} from '@remix-run/react'
+import {createUser, getUserByEmail} from '~/models/user.server'
+import {createUserSession, getUserId} from '~/session.server'
+import {json, redirect} from '@remix-run/node'
+import {safeRedirect, validateEmail} from '~/utils'
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const userId = await getUserId(request);
-  if (userId) return redirect("/");
-  return json({});
-};
+export const loader: LoaderFunction = async ({request}) => {
+  const userId = await getUserId(request)
+  if (userId) return redirect('/')
+  return json({})
+}
 
 interface ActionData {
   errors: {
-    email?: string;
-    password?: string;
-  };
+    email?: string
+    password?: string
+  }
 }
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
+export const action: ActionFunction = async ({request}) => {
+  const formData = await request.formData()
+  const email = formData.get('email')
+  const password = formData.get('password')
+  const redirectTo = safeRedirect(formData.get('redirectTo'), '/')
 
   if (!validateEmail(email)) {
     return json<ActionData>(
-      { errors: { email: "Email is invalid" } },
-      { status: 400 }
-    );
+      {errors: {email: 'Email is invalid'}},
+      {status: 400}
+    )
   }
 
-  if (typeof password !== "string" || password.length === 0) {
+  if (typeof password !== 'string' || password.length === 0) {
     return json<ActionData>(
-      { errors: { password: "Password is required" } },
-      { status: 400 }
-    );
+      {errors: {password: 'Password is required'}},
+      {status: 400}
+    )
   }
 
   if (password.length < 8) {
     return json<ActionData>(
-      { errors: { password: "Password is too short" } },
-      { status: 400 }
-    );
+      {errors: {password: 'Password is too short'}},
+      {status: 400}
+    )
   }
 
-  const existingUser = await getUserByEmail(email);
+  const existingUser = await getUserByEmail(email)
   if (existingUser) {
     return json<ActionData>(
-      { errors: { email: "A user already exists with this email" } },
-      { status: 400 }
-    );
+      {errors: {email: 'A user already exists with this email'}},
+      {status: 400}
+    )
   }
 
-  const user = await createUser(email, password);
+  const user = await createUser(email, password)
 
   return createUserSession({
     request,
     userId: user.id,
     remember: false,
     redirectTo,
-  });
-};
+  })
+}
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Sign Up",
-  };
-};
+    title: 'Sign Up',
+  }
+}
 
 export default function Join() {
-  const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") ?? undefined;
-  const actionData = useActionData() as ActionData;
-  const emailRef = React.useRef<HTMLInputElement>(null);
-  const passwordRef = React.useRef<HTMLInputElement>(null);
+  const [searchParams] = useSearchParams()
+  const redirectTo = searchParams.get('redirectTo') ?? undefined
+  const actionData = useActionData() as ActionData
+  const emailRef = React.useRef<HTMLInputElement>(null)
+  const passwordRef = React.useRef<HTMLInputElement>(null)
 
   React.useEffect(() => {
     if (actionData?.errors?.email) {
-      emailRef.current?.focus();
+      emailRef.current?.focus()
     } else if (actionData?.errors?.password) {
-      passwordRef.current?.focus();
+      passwordRef.current?.focus()
     }
-  }, [actionData]);
+  }, [actionData])
 
   return (
     <div>
       <div>
-        <Form method="post">
+        <Form method='post'>
           <div>
-            <label htmlFor="email">Email address</label>
+            <label htmlFor='email'>Email address</label>
             <div>
               <input
                 ref={emailRef}
-                id="email"
+                id='email'
                 required
                 autoFocus={true}
-                name="email"
-                type="email"
-                autoComplete="email"
+                name='email'
+                type='email'
+                autoComplete='email'
                 aria-invalid={actionData?.errors?.email ? true : undefined}
-                aria-describedby="email-error"
+                aria-describedby='email-error'
               />
               {actionData?.errors?.email && (
-                <div id="email-error">{actionData.errors.email}</div>
+                <div id='email-error'>{actionData.errors.email}</div>
               )}
             </div>
           </div>
 
           <div>
-            <label htmlFor="password">Password</label>
+            <label htmlFor='password'>Password</label>
             <div>
               <input
-                id="password"
+                id='password'
                 ref={passwordRef}
-                name="password"
-                type="password"
-                autoComplete="new-password"
+                name='password'
+                type='password'
+                autoComplete='new-password'
                 aria-invalid={actionData?.errors?.password ? true : undefined}
-                aria-describedby="password-error"
+                aria-describedby='password-error'
               />
               {actionData?.errors?.password && (
-                <div id="password-error">{actionData.errors.password}</div>
+                <div id='password-error'>{actionData.errors.password}</div>
               )}
             </div>
           </div>
 
-          <input type="hidden" name="redirectTo" value={redirectTo} />
-          <button type="submit">Create Account</button>
+          <input type='hidden' name='redirectTo' value={redirectTo} />
+          <button type='submit'>Create Account</button>
           <div>
             <div>
-              Already have an account?{" "}
+              Already have an account?{' '}
               <Link
                 to={{
-                  pathname: "/login",
+                  pathname: '/login',
                   search: searchParams.toString(),
                 }}
               >
@@ -150,5 +150,5 @@ export default function Join() {
         </Form>
       </div>
     </div>
-  );
+  )
 }
