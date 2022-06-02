@@ -1,9 +1,3 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -12,13 +6,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
+import { GlobalStyle } from "./styles";
+import { ThemeProvider } from "styled-components";
 import { getUser } from "./session.server";
-
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
-};
+import { json } from "@remix-run/node";
+import { theme } from "./themes";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -38,13 +32,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function App() {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
       <head>
         <Meta />
         <Links />
+        {typeof document === "undefined" ? "__STYLES__" : null}
       </head>
-      <body className="h-full">
-        <Outlet />
+      <body>
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+          <Outlet />
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

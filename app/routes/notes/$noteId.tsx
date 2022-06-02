@@ -1,11 +1,11 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
-import invariant from "tiny-invariant";
+import { json, redirect } from "@remix-run/node";
 
 import type { Note } from "~/models/note.server";
 import { deleteNote } from "~/models/note.server";
 import { getNote } from "~/models/note.server";
+import invariant from "tiny-invariant";
 import { requireUserId } from "~/session.server";
 
 type LoaderData = {
@@ -37,16 +37,11 @@ export default function NoteDetailsPage() {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">{data.note.title}</h3>
-      <p className="py-6">{data.note.body}</p>
-      <hr className="my-4" />
+      <h3>{data.note.title}</h3>
+      <p>{data.note.body}</p>
+      <hr />
       <Form method="post">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Delete
-        </button>
+        <button type="submit">Delete</button>
       </Form>
     </div>
   );
