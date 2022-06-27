@@ -1,4 +1,5 @@
 import {createGlobalStyle} from 'styled-components'
+import {theme} from '~/themes'
 
 const GlobalStyle = createGlobalStyle`
     html,
@@ -156,12 +157,23 @@ const GlobalStyle = createGlobalStyle`
         sans-serif;
     }
 
+    @media (pointer: coarse) {
+          html {
+            --min-tap-height: 44px;
+          }
+        }
+        ${theme.motion.enabled} {
+          html {
+            scroll-behavior: smooth;
+          }
+        }
+
     /* Set the viewport height on both mobile and desktop. */
     html,
     body {
         height: 100%;
     }
-
+    
     #root {
         min-height: 100%;
         height: 100%;
@@ -171,6 +183,13 @@ const GlobalStyle = createGlobalStyle`
         float above the app.
         */
         isolation: isolate;
+        --color-base: ${theme.colors.base};
+        --color-grayish_blue: ${theme.colors.grayish_blue};
+        --color-cyan_blue: ${theme.colors.cyan_blue};
+        --color-green: ${theme.colors.green};
+        --color-blue_magenta: ${theme.colors.blue_magenta};
+        --color-brown: ${theme.colors.brown};
+        --color-watermelon: ${theme.colors.watermelon};
     }
 `
 

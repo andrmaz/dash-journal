@@ -1,13 +1,13 @@
 import type {DefaultTheme} from 'styled-components'
 
 enum Colors {
-  base = '#fff',
-  grayish_blue = '#98a1b0',
-  cyan_blue = '#3f7ef8',
-  green = '#2ccd48',
-  blue_magenta = '#3a393f',
-  brown = '#dca048',
-  watermelon = '#ff7e85',
+  base = 'hsl(0deg 0% 100%)',
+  grayish_blue = 'hsl(218deg 13% 64%)',
+  cyan_blue = 'hsl(220deg 93% 61%)',
+  green = 'hsl(130deg 65% 49%)',
+  blue_magenta = 'hsl(357deg 100% 75%)',
+  brown = 'hsl(250deg 5% 24%)',
+  watermelon = 'hsl(36deg 68% 57%)',
 }
 enum Weights {
   normal = 500,

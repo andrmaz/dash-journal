@@ -30,12 +30,12 @@ interface ButtonProps {
 
 const MODES = {
   primary: {
-    '--color': 'white',
-    '--bg-color': '#1ea7fd',
+    '--color': 'var(--color-base)',
+    '--bg-color': 'var(--color-cyan_blue)',
     '--box-shadow': 'none',
   },
   secondary: {
-    '--color': '#333',
+    '--color': 'var(--color-grayish_blue)',
     '--bg-color': 'transparent',
     '--box-shadow': 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
   },
@@ -69,9 +69,9 @@ export const Button = ({
   const mode = primary ? 'primary' : 'secondary'
   const action = MODES[mode]
   const dimension = SIZES[size]
-  const style = {...action, ...dimension, backgroundColor}
+  const styles = {...action, ...dimension, backgroundColor}
   return (
-    <Base type='button' style={style} className={className} {...delegated}>
+    <Base type='button' style={styles} className={className} {...delegated}>
       {label}
     </Base>
   )
