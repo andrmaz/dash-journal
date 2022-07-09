@@ -3,7 +3,8 @@ import 'styled-components'
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      base: string
+      white: string
+      black: string
       grayish_blue: string
       cyan_blue: string
       green: string
@@ -12,10 +13,26 @@ declare module 'styled-components' {
       watermelon: string
     }
     fonts: {
+      size: {
+        small: string
+        medium: string
+        large: string
+        huge: string
+      }
       weight: {
         normal: number
         medium: number
         bold: number
+      }
+      spacing: {
+        dense: string
+        normal: string
+        loose: string
+      }
+      height: {
+        dense: number
+        normal: number
+        loose: number
       }
     }
     motion: {

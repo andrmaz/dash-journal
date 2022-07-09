@@ -21,19 +21,22 @@ interface StackProps {
 
 const STYLES = {
   text: {
-    '--color': 'var(--color-cyan_blue)',
-    '--bg-color': 'inherit',
+    '--color': 'var(--color-primary)',
+    '--background': 'inherit',
     '--border': '0',
+    '--shadow': 'var(--shadow-x-large)',
   },
   contained: {
     '--color': 'var(--color-base)',
-    '--bg-color': 'var(--color-cyan_blue)',
+    '--background': 'var(--color-primary)',
     '--border': '0',
+    '--shadow': 'var(--shadow-x-large)',
   },
   outlined: {
-    '--color': 'var(--color-cyan_blue)',
-    '--bg-color': 'var(--color-base)',
-    '--border': '1px solid var(--color-cyan_blue)',
+    '--color': 'var(--color-primary)',
+    '--background': 'var(--color-base)',
+    '--border': '1px solid var(--color-primary)',
+    '--shadow': 'var(--shadow-outline)',
   },
 } as Record<string, React.CSSProperties>
 
@@ -48,24 +51,24 @@ export const Stack = ({variant, label, icon}: StackProps) => {
 }
 
 const Wrapper = styled.article`
-  --width: 160px;
-  height: 40px;
+  --width: 10rem;
+  height: 3.5rem;
   display: grid;
   place-content: center;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
   width: var(--width);
   padding: 8px;
-  background-color: var(--bg-color);
+  background-color: var(--background);
   color: var(--color);
   border: var(--border);
-  border-radius: 2px;
-  box-shadow: 4px 2px 2px ${p => p.theme.colors.grayish_blue};
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow);
 `
 const Label = styled.span`
-  font-size: 0.8rem;
+  font-size: var(--font-size-small);
   text-transform: capitalize;
-  letter-spacing: 1px;
+  letter-spacing: var(--font-spacing-normal);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

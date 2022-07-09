@@ -31,26 +31,26 @@ interface ButtonProps {
 const MODES = {
   primary: {
     '--color': 'var(--color-base)',
-    '--bg-color': 'var(--color-cyan_blue)',
-    '--box-shadow': 'none',
+    '--background': 'var(--color-primary)',
+    '--shadow': 'none',
   },
   secondary: {
-    '--color': 'var(--color-grayish_blue)',
-    '--bg-color': 'transparent',
-    '--box-shadow': 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
+    '--color': 'var(--color-secondary)',
+    '--background': 'transparent',
+    '--shadow': 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
   },
 }
 const SIZES = {
   small: {
-    '--font-size': '0.75rem',
+    '--font-size': 'var(--font-size-small)',
     '--padding': '10px 16px',
   },
   medium: {
-    '--font-size': '0.875rem',
+    '--font-size': 'var(--font-size-medium)',
     '--padding': '11px 20px',
   },
   large: {
-    '--font-size': '1rem',
+    '--font-size': 'var(--font-size-large)',
     '--padding': '12px 24px',
   },
 }
@@ -78,15 +78,15 @@ export const Button = ({
 }
 
 const Base = styled.button`
-  background-color: var(--bg-color);
+  background-color: var(--background);
   border: 0;
-  border-radius: 3em;
-  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius-xx-large);
+  box-shadow: var(--shadow);
   color: var(--color);
   cursor: pointer;
   display: inline-block;
-  font-weight: 700;
+  font-weight: var(--font-weight-medium);
   font-size: var(--font-size);
-  line-height: 1;
+  line-height: var(--font-height-normal);
   padding: var(--padding);
 `

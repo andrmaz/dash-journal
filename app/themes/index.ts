@@ -1,7 +1,8 @@
 import type {DefaultTheme} from 'styled-components'
 
 enum Colors {
-  base = 'hsl(0deg 0% 100%)',
+  white = 'hsl(0deg 0% 100%)',
+  black = 'hsl(0.44deg	0.22%	0.10%)',
   grayish_blue = 'hsl(218deg 13% 64%)',
   cyan_blue = 'hsl(220deg 93% 61%)',
   green = 'hsl(130deg 65% 49%)',
@@ -9,12 +10,6 @@ enum Colors {
   brown = 'hsl(250deg 5% 24%)',
   watermelon = 'hsl(36deg 68% 57%)',
 }
-enum Weights {
-  normal = 500,
-  medium = 600,
-  bold = 800,
-}
-
 enum Breakpoints {
   phone = 600,
   tablet = 950,
@@ -23,7 +18,8 @@ enum Breakpoints {
 
 const theme: DefaultTheme = {
   colors: {
-    base: Colors.base,
+    white: Colors.white,
+    black: Colors.black,
     grayish_blue: Colors.grayish_blue,
     cyan_blue: Colors.cyan_blue,
     green: Colors.green,
@@ -32,10 +28,26 @@ const theme: DefaultTheme = {
     watermelon: Colors.watermelon,
   },
   fonts: {
+    size: {
+      small: '0.875rem',
+      medium: '1rem',
+      large: '1.125rem',
+      huge: '1.5rem',
+    },
     weight: {
-      normal: Weights.bold,
-      medium: Weights.medium,
-      bold: Weights.bold,
+      normal: 500,
+      medium: 600,
+      bold: 800,
+    },
+    spacing: {
+      dense: '-0.015em',
+      normal: 'normal',
+      loose: '0.075em',
+    },
+    height: {
+      dense: 1.4,
+      normal: 1.8,
+      loose: 2.2,
     },
   },
   motion: {

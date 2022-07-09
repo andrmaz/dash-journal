@@ -183,13 +183,49 @@ const GlobalStyle = createGlobalStyle`
         float above the app.
         */
         isolation: isolate;
-        --color-base: ${theme.colors.base};
-        --color-grayish_blue: ${theme.colors.grayish_blue};
-        --color-cyan_blue: ${theme.colors.cyan_blue};
-        --color-green: ${theme.colors.green};
-        --color-blue_magenta: ${theme.colors.blue_magenta};
-        --color-brown: ${theme.colors.brown};
-        --color-watermelon: ${theme.colors.watermelon};
+        
+        --color-base: ${theme.colors.white};
+        --color-dark: ${theme.colors.black};
+        --color-primary: ${theme.colors.cyan_blue};
+        --color-secondary: ${theme.colors.grayish_blue};
+        
+        --font-size-small: ${theme.fonts.size.small};
+        --font-size-medium: ${theme.fonts.size.medium};
+        --font-size-large: ${theme.fonts.size.large};
+
+        --font-weight-normal: ${theme.fonts.weight.normal};
+        --font-weight-medium: ${theme.fonts.weight.medium};
+        --font-weight-bold: ${theme.fonts.weight.bold};
+
+        --font-spacing-dense: ${theme.fonts.spacing.dense};
+        --font-spacing-normal: ${theme.fonts.spacing.normal};
+        --font-spacing-loose: ${theme.fonts.spacing.loose};
+
+        --font-height-dense: ${theme.fonts.height.dense};
+        --font-height-normal: ${theme.fonts.height.normal};
+        --font-height-loose: ${theme.fonts.height.loose};
+
+        --border-radius-small: 0.125rem;
+        --border-radius-medium: 0.25rem;
+        --border-radius-large: 0.5rem;
+        --border-radius-x-large: 1rem;
+        --border-radius-xx-large: 3rem;
+        --border-radius-circle: 50%;
+        --border-radius-pill: 9999px;
+        --border-radius-tab: 5px 5px 0 0;
+
+        --shadow-x-small: 0 1px 0 var(--color-dark);
+        --shadow-small: 0 1px 2px var(--color-dark);
+        --shadow-medium: 0 2px 4px var(--color-dark);
+        --shadow-large: 0 2px 8px var(--color-dark);
+        --shadow-x-large: 0 4px 16px var(--color-dark);
+        --shadow-outline: 0 0 0 3px var(--color-primary);
+
+        --z-index-drawer: 700;
+        --z-index-dialog: 800;
+        --z-index-dropdown: 900;
+        --z-index-toast: 950;
+        --z-index-tooltip: 1000;
     }
 `
 

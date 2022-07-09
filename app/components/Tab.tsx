@@ -38,12 +38,12 @@ export const Tab = React.forwardRef<Ref, TabProps>(
 Tab.displayName = 'Tab'
 
 const Button = styled.button`
-  background-color: ${p => p.theme.colors.base};
+  background-color: ${p => p.theme.colors.white};
   padding: 4px 16px;
   &:hover,
   &:focus {
-    border-radius: 5px 5px 0 0;
-    font-weight: ${p => p.theme.fonts.weight.medium};
+    border-radius: var(--border-radius-tab);
+    font-weight: var(--font-weight-medium);
     outline: none;
   }
   &[aria-selected='true'] {

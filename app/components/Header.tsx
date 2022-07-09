@@ -50,22 +50,22 @@ export const Header = ({
 
 const Wrapper = styled.div`
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid ${p => p.theme.colors.black};
   display: flex;
   justify-content: space-between;
   padding: 15px 20px;
 `
 const Title = styled.h1`
   display: inline-block;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-large);
+  line-height: var(--font-height-normal);
   margin: 6px 0 6px 10px;
   vertical-align: top;
 `
 const Welcome = styled.span`
   color: ${p => p.theme.colors.blue_magenta};
-  font-size: 14px;
+  font-size: var(--font-size-medium);
   margin-right: 10px;
 `
 const RightButton = styled(Button)`
