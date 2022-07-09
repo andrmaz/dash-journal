@@ -1,74 +1,71 @@
 import * as React from 'react'
 
-import {Icon} from './Icon'
-import type {Name} from './Icon'
 import styled from 'styled-components'
 
-interface TabProps {
+interface TabProps extends React.ButtonHTMLAttributes<{}> {
   /**
-   * What aspect variant to use
-   */
-  variant: 'text' | 'contained' | 'outlined'
-  /**
-   * The text to describe the tab
+   * The text to display in the tab
    */
   label: string
   /**
-   * The name of the icon to show in the tab
+   * Indicates the current "selected" state of the tab
    */
-  icon: Name
+  selected: boolean
+  /**
+   * Tab select handler
+   */
+  onClick: () => void
 }
+type Ref = HTMLButtonElement
 
-const STYLES = {
-  text: {
-    '--color': 'var(--color-cyan_blue)',
-    '--bg-color': 'inherit',
-    '--border': '0',
-  },
-  contained: {
-    '--color': 'var(--color-base)',
-    '--bg-color': 'var(--color-cyan_blue)',
-    '--border': '0',
-  },
-  outlined: {
-    '--color': 'var(--color-cyan_blue)',
-    '--bg-color': 'var(--color-base)',
-    '--border': '1px solid var(--color-cyan_blue)',
-  },
-} as Record<string, React.CSSProperties>
+export const Tab = React.forwardRef<Ref, TabProps>(
+  ({label, selected, onClick, ...delegated}, ref) => {
+    return (
+      <Button
+        role='tab'
+        aria-selected={selected}
+        onClick={onClick}
+        {...delegated}
+        type='button'
+        tabIndex={-1}
+        ref={ref}
+      >
+        <Label>{label}</Label>
+      </Button>
+    )
+  }
+)
+Tab.displayName = 'Tab'
 
-export const Tab = ({variant, label, icon}: TabProps) => {
-  const style = STYLES[variant]
-  return (
-    <Wrapper style={style}>
-      <Icon name={icon} size='small' />
-      <Label>{label}</Label>
-    </Wrapper>
-  )
-}
-
-const Wrapper = styled.article`
-  --width: 160px;
-  height: 40px;
-  display: grid;
-  place-content: center;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  width: var(--width);
-  padding: 8px;
-  background-color: var(--bg-color);
-  color: var(--color);
-  border: var(--border);
-  border-radius: 2px;
-  box-shadow: 4px 2px 2px ${p => p.theme.colors.grayish_blue};
+const Button = styled.button`
+  background-color: ${p => p.theme.colors.base};
+  padding: 4px 16px;
+  &:hover,
+  &:focus {
+    border-radius: 5px 5px 0 0;
+    font-weight: ${p => p.theme.fonts.weight.medium};
+    outline: none;
+  }
+  &[aria-selected='true'] {
+    border-bottom-color: ${p => p.theme.colors.cyan_blue};
+    border-width: 0;
+    border-bottom-width: 4px;
+  }
+  &[aria-selected='false'] {
+    border: none;
+  }
 `
 const Label = styled.span`
-  font-size: 0.8rem;
-  text-transform: capitalize;
-  letter-spacing: 1px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: calc(var(--width) * 0.66);
-  margin-left: 8px;
+  &:focus {
+    display: inline-block;
+    padding: 4px 6px;
+  }
+  ${Button}:hover, ${Button}:focus & {
+    border-radius: 3px;
+    border: 2px solid ${p => p.theme.colors.cyan_blue};
+    padding: 2px 4px;
+  }
+  ${Button}[aria-selected='true'] & {
+    color: ${p => p.theme.colors.cyan_blue};
+  }
 `
