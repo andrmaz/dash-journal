@@ -16,3 +16,9 @@ Base.args = {
   action: 'Settings',
   iconProps: {name: 'Settings'},
 }
+
+export const Unread = Template.bind({})
+Unread.args = {
+  action: 'Alert',
+  iconProps: {name: 'AlertCircle'},
+}

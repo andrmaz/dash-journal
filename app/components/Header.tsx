@@ -1,59 +1,33 @@
-import {Button} from '~/components/Button'
+import {Chip} from './Chip'
 import React from 'react'
 import styled from 'styled-components'
 
-type User = {
-  name: string
-}
-
 interface HeaderProps {
-  user?: User
-  onLogin: () => void
-  onLogout: () => void
-  onCreateAccount: () => void
+  title: string
 }
 
-export const Header = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-}: HeaderProps) => (
-  <header>
-    <Wrapper>
-      <div>
-        <Title>Dash Journal</Title>
-      </div>
-      <div>
-        {user ? (
-          <>
-            <Welcome>
-              Welcome, <b>{user.name}</b>!
-            </Welcome>
-            <Button size='small' onClick={onLogout} label='Log out' />
-          </>
-        ) : (
-          <>
-            <Button size='small' onClick={onLogin} label='Log in' />
-            <RightButton
-              primary
-              size='small'
-              onClick={onCreateAccount}
-              label='Sign up'
-            />
-          </>
-        )}
-      </div>
-    </Wrapper>
-  </header>
+export const Header = ({title}: HeaderProps) => (
+  <Wrapper>
+    <div>
+      <Title>{title}</Title>
+    </div>
+    <Container>
+      <Chip action='Alert' iconProps={{name: 'AlertCircle'}} />
+      <Chip action='Settings' iconProps={{name: 'Settings'}} />
+    </Container>
+  </Wrapper>
 )
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
+  grid-area: header;
+  height: 5rem;
+  width: 100%;
   align-items: center;
   border-bottom: 1px solid ${p => p.theme.colors.black};
   display: flex;
   justify-content: space-between;
   padding: 15px 20px;
+  background-color: ${p => p.theme.colors.blue_magenta};
 `
 const Title = styled.h1`
   display: inline-block;
@@ -63,11 +37,6 @@ const Title = styled.h1`
   margin: 6px 0 6px 10px;
   vertical-align: top;
 `
-const Welcome = styled.span`
-  color: ${p => p.theme.colors.blue_magenta};
-  font-size: var(--font-size-medium);
-  margin-right: 10px;
-`
-const RightButton = styled(Button)`
-  margin-left: 10px;
+const Container = styled.div`
+  display: flex;
 `

@@ -1,44 +1,65 @@
-import {Link} from '@remix-run/react'
+import {DatePicker} from '~/components/DatePicker'
+import {Header} from '~/components/Header'
+import type {LinksFunction} from '@remix-run/node'
+import {Sidebar} from '~/components/Sidebar'
 import styled from 'styled-components'
-import {useOptionalUser} from '~/utils'
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css',
+    },
+  ]
+}
 
 export default function Index() {
-  const user = useOptionalUser()
   return (
     <Wrapper id='root'>
-      <div>
-        <div>
-          <div>
-            <div></div>
-            <div>
-              <div>
-                {user ? (
-                  <Link to='/notes'>View Notes for {user.email}</Link>
-                ) : (
-                  <div>
-                    <Link to='/join'>Sign up</Link>
-                    <Link to='/login'>Log In</Link>
-                  </div>
-                )}
-              </div>
-              <a href='https://remix.run'>
-                <img
-                  src='https://user-images.githubusercontent.com/1500684/158298926-e45dafff-3544-4b69-96d6-d3bcc33fc76a.svg'
-                  alt='Remix'
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div></div>
-        </div>
-      </div>
+      <Sidebar />
+      <Container>
+        <Header title='Dashboard' />
+        <Content></Content>
+        <Time>
+          <Calendar>
+            <DatePicker />
+          </Calendar>
+        </Time>
+      </Container>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.main`
-  background-color: ${p => p.theme.colors.green};
+const Wrapper = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  background-color: var(--background-color);
+`
+const Container = styled.main`
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-areas: 'header header' 'content aside';
+  grid-template-rows: 5rem auto;
+  grid-template-columns: 3fr 2fr;
+`
+const Content = styled.section`
+  height: 100%;
+  width: 100%;
+`
+const Time = styled.aside`
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin: auto 0;
+  border-left: 1px solid var(--color-foreground);
+`
+const Calendar = styled.div`
+  width: 100%;
+  height: 60%;
+  display: grid;
+  place-items: center;
 `

@@ -14,20 +14,20 @@ const Template: ComponentStory<typeof Stack> = args => <Stack {...args} />
 export const Text = Template.bind({})
 Text.args = {
   variant: 'text',
-  label: 'description',
+  label: 'dashboard',
   icon: 'Activity',
 }
 
 export const Contained = Template.bind({})
 Contained.args = {
   variant: 'contained',
-  label: 'description',
-  icon: 'Airplay',
+  label: 'payment',
+  icon: 'CreditCard',
 }
 
 export const Outlined = Template.bind({})
 Outlined.args = {
   variant: 'outlined',
-  label: 'description',
-  icon: 'AlertCircle',
+  label: 'statistics',
+  icon: 'BarChart',
 }

@@ -33,6 +33,7 @@ const StyledButton = styled(Button)`
   padding: ${p => p.theme.spacing(1)};
   display: grid;
   place-items: center;
+  background-color: var(--color-base);
   border-radius: var(--border-radius-medium);
   box-shadow: var(--shadow-small);
 `

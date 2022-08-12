@@ -15,12 +15,7 @@ const Template: ComponentStory<typeof Tablist> = args => <Tablist {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  labels: [
-    'Maria Ahlefeldt',
-    'Carl Andersen',
-    'Ida da Fonseca',
-    'Peter Lange-Müller',
-  ],
+  labels: ['Remaining', 'Ongoing', 'Completed'],
 }
 Base.play = async ({canvasElement, args}) => {
   // Starts querying the component from its root element

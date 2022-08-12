@@ -22,7 +22,7 @@ interface StackProps {
 const STYLES = {
   text: {
     '--color': 'var(--color-primary)',
-    '--background': 'inherit',
+    '--background': 'var(--color-base)',
     '--border': '0',
     '--shadow': 'var(--shadow-x-large)',
   },

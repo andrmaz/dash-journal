@@ -2,7 +2,7 @@ import * as icon from 'react-feather'
 
 import React from 'react'
 
-export type Name = 'Activity' | 'Airplay' | 'AlertCircle' | 'Settings'
+export type Name = 'Activity' | 'BarChart' | 'CreditCard' | 'AlertCircle' | 'Settings'
 
 export interface IconProps extends icon.IconProps {
   name: Name

@@ -1,3 +1,5 @@
+import 'react-datepicker/dist/react-datepicker.css'
+
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
 import {DatePicker} from '~/components/DatePicker'
