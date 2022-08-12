@@ -9,7 +9,7 @@ interface TablistProps {
   labels: string[]
 }
 
-export const Tablist: React.FC<TablistProps> = ({labels}) => {
+export const Tablist = ({labels}: TablistProps) => {
   const initial = 0
   const [selected, setSelected] = React.useState<number>(initial)
   const [handleKeyPress, tabRef] = useTabsKey(
@@ -39,5 +39,5 @@ export const Tablist: React.FC<TablistProps> = ({labels}) => {
 }
 
 const Wrapper = styled.div`
-  min-width: 550px;
+  min-width: ${p => p.theme.spacing(140)};
 `

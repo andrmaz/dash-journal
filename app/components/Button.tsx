@@ -1,7 +1,7 @@
-import React from 'react'
+import type {ButtonHTMLAttributes} from 'react'
 import styled from 'styled-components'
 
-interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Is this the principal call to action on the page?
    */
@@ -14,14 +14,6 @@ interface ButtonProps {
    * How large should the button be?
    */
   size?: 'small' | 'medium' | 'large'
-  /**
-   * Button contents
-   */
-  label: string
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void
   /**
    * Attach the passed-in className to the DOM node
    */
@@ -37,7 +29,7 @@ const MODES = {
   secondary: {
     '--color': 'var(--color-secondary)',
     '--background': 'transparent',
-    '--shadow': 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset',
+    '--shadow': 'var(--shadow-medium) inset',
   },
 }
 const SIZES = {
@@ -62,8 +54,8 @@ export const Button = ({
   primary = false,
   size = 'medium',
   backgroundColor,
-  label,
   className,
+  children,
   ...delegated
 }: ButtonProps) => {
   const mode = primary ? 'primary' : 'secondary'
@@ -72,7 +64,7 @@ export const Button = ({
   const styles = {...action, ...dimension, backgroundColor}
   return (
     <Base type='button' style={styles} className={className} {...delegated}>
-      {label}
+      {children}
     </Base>
   )
 }

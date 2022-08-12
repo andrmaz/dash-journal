@@ -58,7 +58,7 @@ const Wrapper = styled.article`
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
   width: var(--width);
-  padding: 8px;
+  padding: ${p => p.theme.spacing(2)};
   background-color: var(--background);
   color: var(--color);
   border: var(--border);
@@ -73,5 +73,5 @@ const Label = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   width: calc(var(--width) * 0.66);
-  margin-left: 8px;
+  margin-left: ${p => p.theme.spacing(2)};
 `

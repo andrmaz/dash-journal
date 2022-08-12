@@ -39,7 +39,7 @@ Tab.displayName = 'Tab'
 
 const Button = styled.button`
   background-color: ${p => p.theme.colors.white};
-  padding: 4px 16px;
+  padding: ${({theme: {spacing}}) => `${spacing(1)} ${spacing(4)}`};
   &:hover,
   &:focus {
     border-radius: var(--border-radius-tab);
@@ -49,7 +49,7 @@ const Button = styled.button`
   &[aria-selected='true'] {
     border-bottom-color: ${p => p.theme.colors.cyan_blue};
     border-width: 0;
-    border-bottom-width: 4px;
+    border-bottom-width: ${p => p.theme.spacing(1)};
   }
   &[aria-selected='false'] {
     border: none;
@@ -58,12 +58,12 @@ const Button = styled.button`
 const Label = styled.span`
   &:focus {
     display: inline-block;
-    padding: 4px 6px;
+    padding: ${({theme: {spacing}}) => `${spacing(1)} ${spacing(1.5)}`};
   }
   ${Button}:hover, ${Button}:focus & {
-    border-radius: 3px;
-    border: 2px solid ${p => p.theme.colors.cyan_blue};
-    padding: 2px 4px;
+    border-radius: ${p => p.theme.spacing(1)};
+    border: ${({theme}) => `${theme.spacing(0.5)} solid ${theme.colors.cyan_blue}`};
+    padding: ${({theme: {spacing}}) => `${spacing(0.5)} ${spacing(1)}`};
   }
   ${Button}[aria-selected='true'] & {
     color: ${p => p.theme.colors.cyan_blue};

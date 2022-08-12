@@ -188,6 +188,8 @@ const GlobalStyle = createGlobalStyle`
         --color-dark: ${theme.colors.black};
         --color-primary: ${theme.colors.cyan_blue};
         --color-secondary: ${theme.colors.grayish_blue};
+        --color-background: ${theme.colors.white};
+        --color-foreground: ${theme.colors.black};
         
         --font-size-small: ${theme.fonts.size.small};
         --font-size-medium: ${theme.fonts.size.medium};

@@ -17,6 +17,7 @@ enum Breakpoints {
 }
 
 const theme: DefaultTheme = {
+  spacing: (factor) => `${4 * factor}px`,
   colors: {
     white: Colors.white,
     black: Colors.black,
