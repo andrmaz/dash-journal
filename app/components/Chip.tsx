@@ -15,14 +15,14 @@ interface ChipProps extends ButtonProps {
   /**
    * Overrides the icon properties
    */
-  iconProps: IconProps
+  icon: IconProps
 }
 
-export const Chip = ({action, iconProps, ...delegated}: ChipProps) => {
+export const Chip = ({action, icon, ...delegated}: ChipProps) => {
   return (
     <StyledButton {...delegated}>
       <VisuallyHidden>{action}</VisuallyHidden>
-      <StyledIcon {...iconProps} color='grey' />
+      <StyledIcon {...icon} color='grey' />
     </StyledButton>
   )
 }

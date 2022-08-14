@@ -1,4 +1,4 @@
-import {Chip} from './Chip'
+import {Chip} from '../components/Chip'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -12,8 +12,8 @@ export const Header = ({title}: HeaderProps) => (
       <Title>{title}</Title>
     </div>
     <Container>
-      <Chip action='Alert' iconProps={{name: 'AlertCircle'}} />
-      <Chip action='Settings' iconProps={{name: 'Settings'}} />
+      <Chip action='Alert' icon={{name: 'AlertCircle'}} />
+      <Chip action='Settings' icon={{name: 'Settings'}} />
     </Container>
   </Wrapper>
 )
@@ -39,4 +39,5 @@ const Title = styled.h1`
 `
 const Container = styled.div`
   display: flex;
+  gap: ${p => p.theme.spacing(4)};
 `

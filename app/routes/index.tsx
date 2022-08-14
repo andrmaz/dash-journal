@@ -1,7 +1,6 @@
-import {DatePicker} from '~/components/DatePicker'
-import {Header} from '~/components/Header'
+import {Container} from '~/views/Container'
 import type {LinksFunction} from '@remix-run/node'
-import {Sidebar} from '~/components/Sidebar'
+import {Navbar} from '~/views/Navbar'
 import styled from 'styled-components'
 
 export const links: LinksFunction = () => {
@@ -16,16 +15,8 @@ export const links: LinksFunction = () => {
 export default function Index() {
   return (
     <Wrapper id='root'>
-      <Sidebar />
-      <Container>
-        <Header title='Dashboard' />
-        <Content></Content>
-        <Time>
-          <Calendar>
-            <DatePicker />
-          </Calendar>
-        </Time>
-      </Container>
+      <Navbar />
+      <Container />
     </Wrapper>
   )
 }
@@ -35,31 +26,4 @@ const Wrapper = styled.div`
   margin: 0 auto;
   display: flex;
   background-color: var(--background-color);
-`
-const Container = styled.main`
-  height: 100%;
-  width: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-areas: 'header header' 'content aside';
-  grid-template-rows: 5rem auto;
-  grid-template-columns: 3fr 2fr;
-`
-const Content = styled.section`
-  height: 100%;
-  width: 100%;
-`
-const Time = styled.aside`
-  height: 100%;
-  width: 100%;
-  display: grid;
-  place-items: center;
-  margin: auto 0;
-  border-left: 1px solid var(--color-foreground);
-`
-const Calendar = styled.div`
-  width: 100%;
-  height: 60%;
-  display: grid;
-  place-items: center;
 `
