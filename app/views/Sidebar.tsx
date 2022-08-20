@@ -1,13 +1,11 @@
-import {DatePicker} from '~/components/DatePicker'
+import {Calendar} from '~/components/Calendar'
 import React from 'react'
 import styled from 'styled-components'
 
 export const Sidebar = () => {
   return (
     <Wrapper>
-      <Calendar>
-        <DatePicker />
-      </Calendar>
+      <Calendar />
     </Wrapper>
   )
 }
@@ -19,10 +17,4 @@ const Wrapper = styled.aside`
   place-items: center;
   margin: auto 0;
   border-left: 1px solid var(--color-foreground);
-`
-const Calendar = styled.div`
-  width: 100%;
-  height: 60%;
-  display: grid;
-  place-items: center;
 `

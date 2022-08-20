@@ -2,18 +2,16 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
-import {DatePicker} from '~/components/DatePicker'
+import {Calendar} from '~/components/Calendar'
 import React from 'react'
 
 export default {
-  title: 'Base/DatePicker',
-  component: DatePicker,
+  title: 'Base/Calendar',
+  component: Calendar,
   argTypes: {},
-} as ComponentMeta<typeof DatePicker>
+} as ComponentMeta<typeof Calendar>
 
-const Template: ComponentStory<typeof DatePicker> = args => (
-  <DatePicker {...args} />
-)
+const Template: ComponentStory<typeof Calendar> = args => <Calendar />
 
 export const Base = Template.bind({})
 Base.args = {}

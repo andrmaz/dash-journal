@@ -1,20 +1,32 @@
+import {NavLink, useLocation} from '@remix-run/react'
+
 import React from 'react'
 import {Stack} from '../components/Stack'
+import type {User} from '@prisma/client'
+import {items} from '~/data'
 import styled from 'styled-components'
-import {useOptionalUser} from '~/utils'
 
-export const Navbar = () => {
-  const user = useOptionalUser()
+interface NavbarProps {
+  user: User
+}
+
+export const Navbar = ({user}: NavbarProps) => {
+  const location = useLocation()
 
   return (
     <Navigation>
-      {user ? <span>{user.email}</span> : null}
+      <span>{user.email}</span>
       <List>
-        <Stack variant='contained' label='dashboard' icon='Activity' />
-        <Stack variant='text' label='payment' icon='CreditCard' />
-        <Stack variant='text' label='statistics' icon='BarChart' />
+        {items.map(({label, icon, pathname}) => {
+          const variant = location.pathname === pathname ? 'contained' : 'text'
+          return (
+            <Item key={label} to={{pathname}} as={NavLink}>
+              <Stack variant={variant} label={label} icon={icon} />
+            </Item>
+          )
+        })}
       </List>
-      <Stack variant='text' label='log out' icon='LogOut' />
+      <NavLink to={{pathname: '/login'}}>Log out</NavLink>
     </Navigation>
   )
 }
@@ -36,3 +48,4 @@ const List = styled.ul`
   align-items: center;
   gap: ${p => p.theme.spacing(4)};
 `
+const Item = styled.li``

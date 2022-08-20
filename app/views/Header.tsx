@@ -1,5 +1,6 @@
 import {Chip} from '../components/Chip'
 import React from 'react'
+import {icons} from '~/data'
 import styled from 'styled-components'
 
 interface HeaderProps {
@@ -12,8 +13,9 @@ export const Header = ({title}: HeaderProps) => (
       <Title>{title}</Title>
     </div>
     <Container>
-      <Chip action='Alert' icon={{name: 'AlertCircle'}} />
-      <Chip action='Settings' icon={{name: 'Settings'}} />
+      {icons.map(({action, name}) => (
+        <Chip key={action} action={action} icon={{name}} />
+      ))}
     </Container>
   </Wrapper>
 )
@@ -36,6 +38,7 @@ const Title = styled.h1`
   line-height: var(--font-height-normal);
   margin: 6px 0 6px 10px;
   vertical-align: top;
+  text-transform: capitalize;
 `
 const Container = styled.div`
   display: flex;

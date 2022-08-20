@@ -14,11 +14,11 @@ const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />
 export const Base = Template.bind({})
 Base.args = {
   action: 'Settings',
-  iconProps: {name: 'Settings'},
+  icon: {name: 'Settings'},
 }
 
 export const Unread = Template.bind({})
 Unread.args = {
   action: 'Alert',
-  iconProps: {name: 'AlertCircle'},
+  icon: {name: 'AlertCircle'},
 }
