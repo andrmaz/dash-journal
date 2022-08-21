@@ -9,6 +9,7 @@ export type Name =
   | 'AlertCircle'
   | 'Settings'
   | 'LogOut'
+  | 'X'
 
 export interface IconProps extends icon.IconProps {
   name: Name

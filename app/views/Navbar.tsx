@@ -26,7 +26,9 @@ export const Navbar = ({user}: NavbarProps) => {
           )
         })}
       </List>
-      <NavLink to={{pathname: '/login'}}>Log out</NavLink>
+      <NavLink to={{pathname: '/login'}}>
+        <Stack variant='none' label='logout' icon='LogOut' />
+      </NavLink>
     </Navigation>
   )
 }

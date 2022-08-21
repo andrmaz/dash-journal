@@ -1,9 +1,12 @@
 import type {DefaultTheme} from 'styled-components'
+import {formatFactor} from '~/utils/theme'
 
 enum Colors {
   white = 'hsl(0deg 0% 100%)',
   black = 'hsl(0.44deg	0.22%	0.10%)',
+  gray = 'hsl(220deg 5% 40%)',
   grayish_blue = 'hsl(218deg 13% 64%)',
+  light_gray = 'hsl(220deg 5% 40% / 0.8)',
   cyan_blue = 'hsl(220deg 93% 61%)',
   green = 'hsl(130deg 65% 49%)',
   blue_magenta = 'hsl(357deg 100% 75%)',
@@ -17,11 +20,13 @@ enum Breakpoints {
 }
 
 const theme: DefaultTheme = {
-  spacing: (factor) => `${4 * factor}px`,
+  spacing: factor => formatFactor(factor),
   colors: {
     white: Colors.white,
     black: Colors.black,
+    gray: Colors.gray,
     grayish_blue: Colors.grayish_blue,
+    light_gray: Colors.light_gray,
     cyan_blue: Colors.cyan_blue,
     green: Colors.green,
     blue_magenta: Colors.blue_magenta,

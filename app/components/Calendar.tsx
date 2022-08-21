@@ -6,21 +6,13 @@ import {Calendar as ReactBigCalendar} from 'react-big-calendar'
 import {localizer} from '~/utils/date'
 import styled from 'styled-components'
 
-export const Calendar = () => {
+interface CalendarProps {
+  events: Event[]
+}
+
+export const Calendar = ({events}: CalendarProps) => {
   const [newPost, setNewPost] = React.useState<Date | null>(null)
   const [postToUpdate, setPostToUpdate] = React.useState<Event | null>(null)
-  const [events, setEvents] = React.useState<Event[]>(
-    [
-      {
-        title: 'event 1',
-        publishAt: '2022-08-01',
-      },
-    ].map(m => ({
-      ...m,
-      start: new Date(m.publishAt),
-      end: new Date(m.publishAt),
-    }))
-  )
 
   return (
     <Wrapper>
@@ -40,9 +32,9 @@ export const Calendar = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   width: 100%;
-  height: 60%;
+  height: ${p => p.theme.spacing(120)};
   display: grid;
   place-items: center;
 `

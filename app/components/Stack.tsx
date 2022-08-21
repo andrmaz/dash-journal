@@ -8,7 +8,7 @@ interface StackProps {
   /**
    * What aspect variant to use
    */
-  variant: 'text' | 'contained' | 'outlined'
+  variant: 'text' | 'contained' | 'outlined' | 'none'
   /**
    * The text to describe the tab
    */
@@ -37,6 +37,12 @@ const STYLES = {
     '--background': 'var(--color-base)',
     '--border': '1px solid var(--color-primary)',
     '--shadow': 'var(--shadow-outline)',
+  },
+  none: {
+    '--color': 'var(--color-foreground)',
+    '--background': 'transparent',
+    '--border': 'none',
+    '--shadow': 'none',
   },
 } as Record<string, React.CSSProperties>
 

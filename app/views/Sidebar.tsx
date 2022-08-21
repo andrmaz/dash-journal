@@ -1,11 +1,31 @@
 import {Calendar} from '~/components/Calendar'
+import type {Event} from 'react-big-calendar'
+import {Manager} from '~/components/Manager'
 import React from 'react'
 import styled from 'styled-components'
 
-export const Sidebar = () => {
+interface SidebarProps {
+  onOpen: () => void
+}
+
+export const Sidebar = ({onOpen}: SidebarProps) => {
+  const [events, setEvents] = React.useState<Event[]>(
+    [
+      {
+        title: 'event 1',
+        publishAt: '2022-08-01',
+      },
+    ].map(e => ({
+      ...e,
+      start: new Date(e.publishAt),
+      end: new Date(e.publishAt),
+    }))
+  )
+
   return (
     <Wrapper>
-      <Calendar />
+      <Calendar events={events} />
+      <Manager onOpen={onOpen} />
     </Wrapper>
   )
 }

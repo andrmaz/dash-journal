@@ -5,6 +5,11 @@ import getDay from 'date-fns/getDay'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 
+export function formatDateEvent(date?: Date) {
+  if (!date) return '-'
+  return format(new Date(date), 'HH:mm')
+}
+
 export const localizer = dateFnsLocalizer({
   format,
   parse,

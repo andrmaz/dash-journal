@@ -2,11 +2,13 @@ import 'styled-components'
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    spacing: (factor: number) => string
+    spacing: (factor: number | number[]) => string
     colors: {
       white: string
       black: string
+      gray: string
       grayish_blue: string
+      light_gray: string
       cyan_blue: string
       green: string
       blue_magenta: string
