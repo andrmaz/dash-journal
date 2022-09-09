@@ -20,7 +20,7 @@ export const Navbar = ({user}: NavbarProps) => {
         {items.map(({label, icon, pathname}) => {
           const variant = location.pathname === pathname ? 'contained' : 'text'
           return (
-            <Item key={label} to={{pathname}} as={NavLink}>
+            <Item to={{pathname}} as={NavLink} key={label}>
               <Stack variant={variant} label={label} icon={icon} />
             </Item>
           )

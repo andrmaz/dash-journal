@@ -4,11 +4,9 @@ import {Manager} from '~/components/Manager'
 import React from 'react'
 import styled from 'styled-components'
 
-interface SidebarProps {
-  onOpen: () => void
-}
+interface SidebarProps {}
 
-export const Sidebar = ({onOpen}: SidebarProps) => {
+export const Sidebar = (props: SidebarProps) => {
   const [events, setEvents] = React.useState<Event[]>(
     [
       {
@@ -25,7 +23,7 @@ export const Sidebar = ({onOpen}: SidebarProps) => {
   return (
     <Wrapper>
       <Calendar events={events} />
-      <Manager onOpen={onOpen} />
+      <Manager />
     </Wrapper>
   )
 }

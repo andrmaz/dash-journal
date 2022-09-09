@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-import type {Event} from 'react-big-calendar'
-import {Meeting} from './Meeting'
+import type {Event, SlotInfo} from 'react-big-calendar'
+
+import EventModal from '~/views/modal/Event'
 import {Calendar as ReactBigCalendar} from 'react-big-calendar'
+import {Slot} from './Slot'
 import {localizer} from '~/utils/date'
 import styled from 'styled-components'
 
@@ -11,21 +13,37 @@ interface CalendarProps {
 }
 
 export const Calendar = ({events}: CalendarProps) => {
-  const [newPost, setNewPost] = React.useState<Date | null>(null)
-  const [postToUpdate, setPostToUpdate] = React.useState<Event | null>(null)
+  const [event, setEvent] = React.useState<Event | null>(null)
+  const [isOpen, setIsOpen] = React.useState(false)
+  const onOpen = () => setIsOpen(true)
+  const onDismiss = () => setIsOpen(false)
+
+  const onSelectSlot = (slot: SlotInfo) => {
+    setEvent({start: slot.start})
+    onOpen()
+  }
+  const onDrillDown = (date: Date) => {
+    setEvent({start: date})
+    onOpen()
+  }
+  const onSelectEvent = (event: Event) => {
+    setEvent(event)
+    onOpen()
+  }
 
   return (
     <Wrapper>
+      <EventModal isOpen={isOpen} onDismiss={onDismiss} event={event} />
       <ReactBigCalendar
         localizer={localizer}
         events={events}
         startAccessor='start'
         endAccessor='end'
-        components={{event: Meeting}}
+        components={{event: Slot}}
         selectable
-        onSelectSlot={slot => setNewPost(slot.start)}
-        onDrillDown={date => setNewPost(date)}
-        onSelectEvent={event => setPostToUpdate(event)}
+        onSelectSlot={onSelectSlot}
+        onDrillDown={onDrillDown}
+        onSelectEvent={onSelectEvent}
         views={['month']}
       />
     </Wrapper>

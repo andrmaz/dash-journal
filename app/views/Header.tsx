@@ -14,7 +14,7 @@ export const Header = ({title}: HeaderProps) => (
     </div>
     <Container>
       {icons.map(({action, name}) => (
-        <Chip key={action} action={action} icon={{name}} />
+        <Chip action={action} icon={{name}} key={action} />
       ))}
     </Container>
   </Wrapper>

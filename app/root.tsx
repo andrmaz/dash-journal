@@ -11,12 +11,12 @@ import type {LoaderFunction, MetaFunction} from '@remix-run/node'
 import styled, {ThemeProvider} from 'styled-components'
 
 import {GlobalStyle} from './styles'
-import {Layout} from './layouts'
 import type {LinksFunction} from '@remix-run/node'
 import Login from './routes/login'
 import {getUser} from './session.server'
 import {json} from '@remix-run/node'
 import {theme} from './themes'
+import {withLayout} from './layouts'
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -58,13 +58,7 @@ export default function App() {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <Wrapper id='root'>
-            {user ? (
-              <Layout user={user}>
-                <Outlet />
-              </Layout>
-            ) : (
-              <Login />
-            )}
+            {user ? {...withLayout(Outlet, user)} : <Login />}
           </Wrapper>
         </ThemeProvider>
         <ScrollRestoration />
