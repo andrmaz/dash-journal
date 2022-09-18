@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import type {Event, SlotInfo} from 'react-big-calendar'
 
-import EventModal from '~/views/modal/Event'
+import EventModal from '~/views/modal.event'
 import {Calendar as ReactBigCalendar} from 'react-big-calendar'
 import {Slot} from './Slot'
 import {localizer} from '~/utils/date'

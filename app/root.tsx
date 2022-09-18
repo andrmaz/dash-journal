@@ -7,16 +7,23 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
-import type {LoaderFunction, MetaFunction} from '@remix-run/node'
-import styled, {ThemeProvider} from 'styled-components'
+import type {LinksFunction, MetaFunction} from '@remix-run/node'
 
 import {GlobalStyle} from './styles'
-import type {LinksFunction} from '@remix-run/node'
-import Login from './routes/login'
-import {getUser} from './session.server'
+import {Layout} from './views/layout'
+import type {LoaderFunction} from '@remix-run/node'
+import {ThemeProvider} from 'styled-components'
+import {getUser} from '~/session.server'
 import {json} from '@remix-run/node'
 import {theme} from './themes'
-import {withLayout} from './layouts'
+
+type LoaderData = {
+  user: Awaited<ReturnType<typeof getUser>>
+}
+
+export const loader: LoaderFunction = async ({request}) => {
+  return json<LoaderData>({user: await getUser(request)})
+}
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -33,16 +40,6 @@ export const links: LinksFunction = () => {
   ]
 }
 
-type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>
-}
-
-export const loader: LoaderFunction = async ({request}) => {
-  return json<LoaderData>({
-    user: await getUser(request),
-  })
-}
-
 export default function App() {
   const data = useLoaderData() as LoaderData
   const user = data.user
@@ -57,9 +54,15 @@ export default function App() {
       <body>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <Wrapper id='root'>
-            {user ? {...withLayout(Outlet, user)} : <Login />}
-          </Wrapper>
+          <div id='root'>
+            {user ? (
+              <Layout user={user}>
+                <Outlet />
+              </Layout>
+            ) : (
+              <Outlet />
+            )}
+          </div>
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
@@ -68,7 +71,3 @@ export default function App() {
     </html>
   )
 }
-
-const Wrapper = styled.div`
-  width: 100%;
-`

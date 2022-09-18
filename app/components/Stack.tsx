@@ -46,8 +46,10 @@ const STYLES = {
   },
 } as Record<string, React.CSSProperties>
 
-export const Stack = ({variant, label, icon}: StackProps) => {
+export const Stack = (props: StackProps) => {
+  const {variant, label, icon} = props
   const style = STYLES[variant]
+
   return (
     <Wrapper style={style}>
       <Icon name={icon} size='small' />

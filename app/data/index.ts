@@ -1,13 +1,13 @@
 import type {Name} from '~/components/Icon'
 
 export const items: {label: string; icon: Name; pathname: string}[] = [
-  {label: 'dashboard', icon: 'Activity', pathname: '/'},
+  {label: 'dashboard', icon: 'Activity', pathname: '/dashboard'},
   {label: 'payments', icon: 'CreditCard', pathname: '/payments'},
   {label: 'statistics', icon: 'BarChart', pathname: '/statistics'},
 ]
 
 export const routes = new Map([
-  ['/', 'dashboard'],
+  ['/dashboard', 'dashboard'],
   ['/payments', 'payments'],
   ['/statistics', 'statistics'],
 ])

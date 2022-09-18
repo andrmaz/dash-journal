@@ -15,7 +15,7 @@ const EventModal = (props: EventModalProps) => {
 
   return (
     <Modal isOpen={isOpen} onDismiss={onDismiss}>
-      <Meeting event={event} />
+      <Meeting event={event} action='/' />
     </Modal>
   )
 }

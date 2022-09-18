@@ -7,7 +7,7 @@ import {items} from '~/data'
 import styled from 'styled-components'
 
 interface NavbarProps {
-  user: User
+  user: User | null
 }
 
 export const Navbar = ({user}: NavbarProps) => {
@@ -15,7 +15,7 @@ export const Navbar = ({user}: NavbarProps) => {
 
   return (
     <Navigation>
-      <span>{user.email}</span>
+      <span>{user?.email}</span>
       <List>
         {items.map(({label, icon, pathname}) => {
           const variant = location.pathname === pathname ? 'contained' : 'text'

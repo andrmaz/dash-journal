@@ -1,35 +1,31 @@
 import * as React from 'react'
 
-import {Header} from '~/views/Header'
-import {Navbar} from '~/views/Navbar'
-import {Sidebar} from '~/views/Sidebar'
+import {Header} from '~/views/header'
+import {Navbar} from '~/views/navbar'
+import {Sidebar} from '~/views/sidebar'
 import type {User} from '@prisma/client'
 import {routes} from '~/data'
 import styled from 'styled-components'
 import {useLocation} from '@remix-run/react'
 
-interface Props {
+interface LayoutProps {
   user: User
 }
-type LayoutProps = React.PropsWithChildren<Props>
 
-const Layout = ({user, children}: LayoutProps) => {
+export const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
   const location = useLocation()
   const title = routes.get(location.pathname) || ''
 
   return (
     <Wrapper>
-      <Navbar user={user} />
+      <Navbar user={props.user} />
       <Container>
         <Header title={title} />
-        <Content>{children}</Content>
+        <Content>{props.children}</Content>
         <Sidebar />
       </Container>
     </Wrapper>
   )
-}
-export function withLayout(Component: React.ReactNode, user: User) {
-  return <Layout user={user}>{Component}</Layout>
 }
 
 const Wrapper = styled.div`

@@ -12,7 +12,9 @@ interface Props {
 }
 type ModalProps = React.PropsWithChildren<Props>
 
-export default function Modal({isOpen, onDismiss, children}: ModalProps) {
+export default function Modal(props: ModalProps) {
+  const { isOpen, onDismiss, children } = props
+  
   return (
     <Overlay isOpen={isOpen} onDismiss={onDismiss}>
       <Backdrop />
