@@ -1,6 +1,15 @@
 import type {DefaultTheme} from 'styled-components'
 import {formatFactor} from '~/utils/theme'
 
+/* CSS HSL */
+/* 
+--old-rose: hsla(359, 38%, 65%, 1);
+--pale-pink: hsla(353, 52%, 90%, 1);
+--desert-sand: hsla(28, 37%, 75%, 1);
+--tuscany: hsla(16, 23%, 62%, 1);
+--catawba: hsla(340, 27 %, 36 %, 1); 
+*/
+
 enum Colors {
   white = 'hsl(0deg 0% 100%)',
   black = 'hsl(0.44deg	0.22%	0.10%)',

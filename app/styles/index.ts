@@ -2,6 +2,48 @@ import {createGlobalStyle} from 'styled-components'
 import {theme} from '~/themes'
 
 const GlobalStyle = createGlobalStyle`
+    /* latin */
+    @font-face {
+    font-family: 'Cormorant Infant';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/cormorantinfant.normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* latin */
+    @font-face {
+    font-family: 'Overpass';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/overpass.italic.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* latin */
+    @font-face {
+    font-family: 'Overpass';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/overpass.normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* latin */
+    @font-face {
+    font-family: 'Palanquin';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/palanquin.normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    
+    /* http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+    */
+
     html,
     body,
     div,
@@ -142,7 +184,39 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: 'Nunito',
+        font-family: 'Palanquin',
+        -apple-system,
+        BlinkMacSystemFont,
+        avenir next,
+        avenir,
+        segoe ui,
+        helvetica neue,
+        helvetica,
+        Ubuntu,
+        roboto,
+        noto,
+        arial,
+        sans-serif;
+    }
+
+    h1, h2 {
+        font-family: 'Cormorant Infant',
+        -apple-system,
+        BlinkMacSystemFont,
+        avenir next,
+        avenir,
+        segoe ui,
+        helvetica neue,
+        helvetica,
+        Ubuntu,
+        roboto,
+        noto,
+        arial,
+        sans-serif;
+    }
+
+    h3, h4, h4, h5, h6 {
+        font-family: 'Overpass',
         -apple-system,
         BlinkMacSystemFont,
         avenir next,
@@ -158,15 +232,15 @@ const GlobalStyle = createGlobalStyle`
     }
 
     @media (pointer: coarse) {
-          html {
-            --min-tap-height: 44px;
-          }
+        html {
+        --min-tap-height: 44px;
         }
-        ${theme.motion.enabled} {
-          html {
-            scroll-behavior: smooth;
-          }
+    }
+    ${theme.motion.enabled} {
+        html {
+        scroll-behavior: smooth;
         }
+    }
 
     /* Set the viewport height on both mobile and desktop. */
     html,
