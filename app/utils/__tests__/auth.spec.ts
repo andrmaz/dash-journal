@@ -1,6 +1,6 @@
-import {validateEmail} from './utils'
+import {validateEmail} from '../auth'
 
-test('validateEmail returns false for non-emails', () => {
+it('should not validate wrong email formats', () => {
   expect(validateEmail(undefined)).toBe(false)
   expect(validateEmail(null)).toBe(false)
   expect(validateEmail('')).toBe(false)
@@ -8,6 +8,6 @@ test('validateEmail returns false for non-emails', () => {
   expect(validateEmail('n@')).toBe(false)
 })
 
-test('validateEmail returns true for emails', () => {
+it('should validate correct email format', () => {
   expect(validateEmail('kody@example.com')).toBe(true)
 })

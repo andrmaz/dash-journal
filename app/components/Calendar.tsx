@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import type {Event, SlotInfo} from 'react-big-calendar'
 
-import EventModal from '~/views/modal.event'
+import EventModal from '~/composer/EventModal'
 import {Calendar as ReactBigCalendar} from 'react-big-calendar'
 import {Slot} from './Slot'
 import {localizer} from '~/utils/date'
@@ -12,18 +12,19 @@ interface CalendarProps {
   events: Event[]
 }
 
-export const Calendar = ({events}: CalendarProps) => {
+export const Calendar = (props: CalendarProps) => {
+  const [date, setDate] = React.useState<Date | null>(null)
   const [event, setEvent] = React.useState<Event | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
   const onOpen = () => setIsOpen(true)
   const onDismiss = () => setIsOpen(false)
 
   const onSelectSlot = (slot: SlotInfo) => {
-    setEvent({start: slot.start})
+    setDate(slot.start)
     onOpen()
   }
   const onDrillDown = (date: Date) => {
-    setEvent({start: date})
+    setDate(date)
     onOpen()
   }
   const onSelectEvent = (event: Event) => {
@@ -33,10 +34,15 @@ export const Calendar = ({events}: CalendarProps) => {
 
   return (
     <Wrapper>
-      <EventModal isOpen={isOpen} onDismiss={onDismiss} event={event} />
+      <EventModal
+        isOpen={isOpen}
+        onDismiss={onDismiss}
+        event={event}
+        date={date}
+      />
       <ReactBigCalendar
         localizer={localizer}
-        events={events}
+        events={props.events}
         startAccessor='start'
         endAccessor='end'
         components={{event: Slot}}

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import {Header} from '~/views/header'
-import {Navbar} from '~/views/navbar'
-import {Sidebar} from '~/views/sidebar'
+import {Header} from '~/composer/Header'
+import {Navbar} from '~/composer/Navbar'
+import {Sidebar} from '~/composer/Sidebar'
 import type {User} from '@prisma/client'
 import {routes} from '~/data'
 import styled from 'styled-components'

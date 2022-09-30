@@ -8,7 +8,7 @@ import type {
 import {Form, Link, useActionData, useSearchParams} from '@remix-run/react'
 import {createUserSession, getUserId} from '~/session.server'
 import {json, redirect} from '@remix-run/node'
-import {safeRedirect, validateEmail} from '~/utils'
+import {safeRedirect, validateEmail} from '~/utils/auth'
 
 import {verifyLogin} from '~/models/user.server'
 
@@ -79,7 +79,7 @@ export const meta: MetaFunction = () => {
 export default function LoginPage() {
   const [searchParams] = useSearchParams()
   const redirectTo = searchParams.get('redirectTo') || '/'
-  const actionData = useActionData() as ActionData
+  const actionData = useActionData<ActionData>()
   const emailRef = React.useRef<HTMLInputElement>(null)
   const passwordRef = React.useRef<HTMLInputElement>(null)
 

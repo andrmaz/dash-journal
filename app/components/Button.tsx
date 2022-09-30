@@ -1,7 +1,7 @@
-import type {ButtonHTMLAttributes} from 'react'
+import type {ComponentPropsWithoutRef} from 'react'
 import styled from 'styled-components'
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   /**
    * Is this the principal call to action on the page?
    */

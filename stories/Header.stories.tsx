@@ -1,6 +1,6 @@
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
-import {Header} from '~/views/header'
+import {Header} from '~/composer/Header'
 import React from 'react'
 
 export default {

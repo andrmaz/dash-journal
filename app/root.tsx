@@ -1,3 +1,9 @@
+import type {
+  ActionFunction,
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -7,11 +13,9 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
-import type {LinksFunction, MetaFunction} from '@remix-run/node'
 
 import {GlobalStyle} from './styles'
-import {Layout} from './views/layout'
-import type {LoaderFunction} from '@remix-run/node'
+import {Layout} from './composer/Layout'
 import {ThemeProvider} from 'styled-components'
 import {getUser} from '~/session.server'
 import {json} from '@remix-run/node'
@@ -41,7 +45,7 @@ export const links: LinksFunction = () => {
 }
 
 export default function App() {
-  const data = useLoaderData() as LoaderData
+  const data = useLoaderData<LoaderData>()
   const user = data.user
 
   return (

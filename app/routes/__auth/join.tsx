@@ -9,7 +9,7 @@ import {Form, Link, useActionData, useSearchParams} from '@remix-run/react'
 import {createUser, getUserByEmail} from '~/models/user.server'
 import {createUserSession, getUserId} from '~/session.server'
 import {json, redirect} from '@remix-run/node'
-import {safeRedirect, validateEmail} from '~/utils'
+import {safeRedirect, validateEmail} from '~/utils/auth'
 
 export const loader: LoaderFunction = async ({request}) => {
   const userId = await getUserId(request)
@@ -78,7 +78,7 @@ export const meta: MetaFunction = () => {
 export default function Join() {
   const [searchParams] = useSearchParams()
   const redirectTo = searchParams.get('redirectTo') ?? undefined
-  const actionData = useActionData() as ActionData
+  const actionData = useActionData<ActionData>()
   const emailRef = React.useRef<HTMLInputElement>(null)
   const passwordRef = React.useRef<HTMLInputElement>(null)
 
