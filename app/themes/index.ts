@@ -1,46 +1,56 @@
-import type {DefaultTheme} from 'styled-components'
+import type {Alpha, DefaultTheme} from 'styled-components'
+
 import {formatFactor} from '~/utils/theme'
 
-/* CSS HSL */
-/* 
---old-rose: hsla(359, 38%, 65%, 1);
---pale-pink: hsla(353, 52%, 90%, 1);
---desert-sand: hsla(28, 37%, 75%, 1);
---tuscany: hsla(16, 23%, 62%, 1);
---catawba: hsla(340, 27 %, 36 %, 1); 
-*/
-
-enum Colors {
-  white = 'hsl(0deg 0% 100%)',
-  black = 'hsl(0.44deg	0.22%	0.10%)',
-  gray = 'hsl(220deg 5% 40%)',
-  grayish_blue = 'hsl(218deg 13% 64%)',
-  light_gray = 'hsl(220deg 5% 40% / 0.8)',
-  cyan_blue = 'hsl(220deg 93% 61%)',
-  green = 'hsl(130deg 65% 49%)',
-  blue_magenta = 'hsl(357deg 100% 75%)',
-  brown = 'hsl(250deg 5% 24%)',
-  watermelon = 'hsl(36deg 68% 57%)',
+const opacity: Record<Alpha, number> = {
+  '300': 0.3,
+  '500': 0.5,
+  '700': 0.7,
+  '1000': 1,
 }
+
+const createColorPallet = (
+  color: Color,
+  alpha: Array<keyof typeof opacity>
+): Record<Alpha, string> =>
+  Object.assign(
+    {},
+    ...alpha.map(a => ({
+      [a]: `hsla(${color}, ${opacity[a]})`,
+    }))
+  )
+
+/* CSS HSL */
+enum Color {
+  white = '0, 0%, 100%',
+  black = '0.44,	0.22%, 0.10%',
+  gray = '220, 5%, 40%',
+  oldRose = '359, 38%, 65%',
+  palePink = '353, 52%, 90%',
+  desertSand = '28, 37%, 75%',
+  tuscany = '16, 23%, 62%',
+  catawba = '340, 27 %, 36%',
+}
+
 enum Breakpoints {
   phone = 600,
   tablet = 950,
   laptop = 1300,
 }
 
+const alphas = Object.keys(opacity) as Alpha[]
+
 const theme: DefaultTheme = {
   spacing: factor => formatFactor(factor),
   colors: {
-    white: Colors.white,
-    black: Colors.black,
-    gray: Colors.gray,
-    grayish_blue: Colors.grayish_blue,
-    light_gray: Colors.light_gray,
-    cyan_blue: Colors.cyan_blue,
-    green: Colors.green,
-    blue_magenta: Colors.blue_magenta,
-    brown: Colors.brown,
-    watermelon: Colors.watermelon,
+    white: `hsla(${Color.white}, ${opacity['1000']})`,
+    black: `hsla(${Color.black}, ${opacity['1000']})`,
+    gray: createColorPallet(Color.gray, alphas),
+    oldRose: createColorPallet(Color.oldRose, alphas),
+    palePink: createColorPallet(Color.palePink, alphas),
+    desertSand: createColorPallet(Color.desertSand, alphas),
+    tuscany: createColorPallet(Color.tuscany, alphas),
+    catawba: createColorPallet(Color.oldRose, alphas),
   },
   fonts: {
     size: {

@@ -29,7 +29,7 @@ const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 15px 20px;
-  background-color: ${p => p.theme.colors.blue_magenta};
+  background-color: ${p => p.theme.colors.catawba['1000']};
 `
 const Title = styled.h1`
   display: inline-block;

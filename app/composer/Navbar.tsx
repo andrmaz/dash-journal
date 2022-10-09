@@ -39,7 +39,7 @@ const Navigation = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${p => p.theme.colors.grayish_blue};
+  background-color: ${p => p.theme.colors.tuscany['500']};
   padding: ${p => p.theme.spacing(8)};
 `
 const List = styled.ul`
