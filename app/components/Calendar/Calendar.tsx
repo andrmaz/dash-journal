@@ -4,7 +4,7 @@ import type {Event, SlotInfo} from 'react-big-calendar'
 
 import EventModal from '~/composer/EventModal'
 import {Calendar as ReactBigCalendar} from 'react-big-calendar'
-import {Slot} from './Slot'
+import {Slot} from '../Slot'
 import {localizer} from '~/utils/date'
 import styled from 'styled-components'
 

@@ -19,14 +19,13 @@ interface ActionData {
 export const action: ActionFunction = async ({request}) => {
   const formData = await request.formData()
   const title = formData.get('title')
-  const start = formData.get('start')
-  const to = formData.get('to')
-  const client = formData.get('client')
-  const project = formData.get('project')
+  formData.get('start')
+  formData.get('to')
+  formData.get('client')
+  formData.get('project')
 
   // Create new meeting
   // prisma.create.meeting({title, client, project})
-  console.log({title, start, to, client, project})
 
   if (!title) {
     return json<ActionData>({errors: {title: 'Invalid title'}}, {status: 400})

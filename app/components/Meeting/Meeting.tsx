@@ -34,13 +34,9 @@ export const Meeting = (props: MeetingProps) => {
           <input type='hidden' id='to' name='to' value={date} />
         </div>
 
-        <div>
-          <SelectClients defaultValue={''} />
-        </div>
+        <SelectClients defaultValue={''} />
 
-        <div>
-          <SelectProjects defaultValue={''} />
-        </div>
+        <SelectProjects defaultValue={''} />
 
         <input type='submit' value='Submit' />
       </fieldset>

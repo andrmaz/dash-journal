@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import {Tab} from './Tab'
+import {Tab} from '../Tab'
 import {addTabProps} from '~/utils/a11y'
 import styled from 'styled-components'
 import {useTabsKey} from '~/hooks/useTabsKey'

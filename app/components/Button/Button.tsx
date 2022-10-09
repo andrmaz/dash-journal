@@ -22,13 +22,13 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 
 const MODES = {
   primary: {
-    '--color': 'var(--color-base)',
+    '--color': 'var(--color-foreground)',
     '--background': 'var(--color-primary)',
     '--shadow': 'none',
   },
   secondary: {
-    '--color': 'var(--color-secondary)',
-    '--background': 'transparent',
+    '--color': 'var(--color-foreground)',
+    '--background': 'var(--color-secondary)',
     '--shadow': 'var(--shadow-medium) inset',
   },
 }

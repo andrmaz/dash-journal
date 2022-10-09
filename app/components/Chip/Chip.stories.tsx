@@ -1,6 +1,6 @@
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
-import {Chip} from '~/components/Chip'
+import {Chip} from './'
 import React from 'react'
 
 export default {

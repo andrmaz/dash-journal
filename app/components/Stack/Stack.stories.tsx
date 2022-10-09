@@ -1,7 +1,7 @@
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
 import React from 'react'
-import {Stack} from '~/components/Stack'
+import {Stack} from './'
 
 export default {
   title: 'Base/Stack',

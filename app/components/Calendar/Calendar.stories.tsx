@@ -2,7 +2,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
-import {Calendar} from '~/components/Calendar'
+import {Calendar} from './'
 import React from 'react'
 
 export default {

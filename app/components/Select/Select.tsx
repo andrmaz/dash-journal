@@ -16,16 +16,12 @@ export const SelectClients = ({defaultValue}: SelectProps) => {
   }, [fetcher])
 
   return (
-    <fetcher.Form method='get' action='/clients'>
+    <div>
       <label htmlFor='client'>Client:</label>
-      <select
-        id='client'
-        name='client'
-        onChange={event => fetcher.submit(event.target.form)}
-      >
+      <select id='client' name='client'>
         {fetcher.state === 'submitting' ? <>Loading ...</> : null}
         {fetcher.data?.error ? (
-          <p>Failed to load clients </p>
+          <>Failed to load clients </>
         ) : fetcher.data?.length ? (
           <>
             {fetcher.data?.map((client: string) => (
@@ -35,10 +31,10 @@ export const SelectClients = ({defaultValue}: SelectProps) => {
             ))}
           </>
         ) : (
-          <span>No results found</span>
+          <>No results found</>
         )}
       </select>
-    </fetcher.Form>
+    </div>
   )
 }
 
@@ -52,16 +48,12 @@ export const SelectProjects = ({defaultValue}: SelectProps) => {
   }, [fetcher])
 
   return (
-    <fetcher.Form method='get' action='/projects'>
+    <div>
       <label htmlFor='project'>Project:</label>
-      <select
-        id='project'
-        name='project'
-        onChange={event => fetcher.submit(event.target.form)}
-      >
+      <select id='project' name='project'>
         {fetcher.state === 'submitting' ? <>Loading ...</> : null}
         {fetcher.data?.error ? (
-          <p>Failed to load projects </p>
+          <>Failed to load projects </>
         ) : fetcher.data?.length ? (
           <>
             {fetcher.data?.map((project: string) => (
@@ -71,9 +63,9 @@ export const SelectProjects = ({defaultValue}: SelectProps) => {
             ))}
           </>
         ) : (
-          <span>No results found</span>
+          <>No results found</>
         )}
       </select>
-    </fetcher.Form>
+    </div>
   )
 }

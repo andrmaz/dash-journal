@@ -1,7 +1,7 @@
 import type {ComponentMeta, ComponentStory} from '@storybook/react'
 
 import React from 'react'
-import {Slot} from '~/components/Slot'
+import {Slot} from '../Slot'
 import {expect} from '@storybook/jest'
 import {formatDateEvent} from '~/utils/date'
 import {within} from '@storybook/testing-library'

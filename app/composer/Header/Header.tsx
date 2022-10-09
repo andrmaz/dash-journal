@@ -1,4 +1,4 @@
-import {Chip} from '../components/Chip'
+import {Chip} from '~/components/Chip'
 import React from 'react'
 import {icons} from '~/data'
 import styled from 'styled-components'

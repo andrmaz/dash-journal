@@ -2,7 +2,7 @@ import type {ComponentMeta, ComponentStory} from '@storybook/react'
 import {userEvent, waitFor, within} from '@storybook/testing-library'
 
 import React from 'react'
-import {Tablist} from '~/components/Tablist'
+import {Tablist} from './'
 import {expect} from '@storybook/jest'
 
 export default {

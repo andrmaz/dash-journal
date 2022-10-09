@@ -47,7 +47,7 @@ const Button = styled.button`
     outline: none;
   }
   &[aria-selected='true'] {
-    border-bottom-color: ${p => p.theme.colors.tuscany['500']};
+    border-bottom-color: ${p => p.theme.colors.tuscany['1000']};
     border-width: 0;
     border-bottom-width: ${p => p.theme.spacing(1)};
   }
@@ -63,10 +63,10 @@ const Label = styled.span`
   ${Button}:hover, ${Button}:focus & {
     border-radius: ${p => p.theme.spacing(1)};
     border: ${({theme}) =>
-      `${theme.spacing(0.5)} solid ${theme.colors.tuscany['500']}`};
+      `${theme.spacing(0.5)} solid ${theme.colors.tuscany['1000']}`};
     padding: ${({theme: {spacing}}) => `${spacing(0.5)} ${spacing(1)}`};
   }
   ${Button}[aria-selected='true'] & {
-    color: ${p => p.theme.colors.tuscany['500']};
+    color: ${p => p.theme.colors.oldRose['1000']};
   }
 `

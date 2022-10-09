@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import {Button} from './Button'
-import type {ButtonProps} from './Button'
-import {Icon} from './Icon'
-import type {IconProps} from './Icon'
+import {Button} from '../Button'
+import type {ButtonProps} from '../Button'
+import {Icon} from '../Icon'
+import type {IconProps} from '../Icon'
 import VisuallyHidden from '@reach/visually-hidden'
 import styled from 'styled-components'
 

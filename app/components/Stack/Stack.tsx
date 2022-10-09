@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import {Icon} from './Icon'
-import type {Name} from './Icon'
+import {Icon} from '../Icon'
+import type {Name} from '../Icon'
 import styled from 'styled-components'
 
 interface StackProps {
@@ -21,20 +21,20 @@ interface StackProps {
 
 const STYLES = {
   text: {
-    '--color': 'var(--color-primary)',
-    '--background': 'var(--color-base)',
+    '--color': 'var(--color-foreground)',
+    '--background': 'var(--color-background)',
     '--border': '0',
     '--shadow': 'var(--shadow-x-large)',
   },
   contained: {
-    '--color': 'var(--color-base)',
+    '--color': 'var(--color-foreground)',
     '--background': 'var(--color-primary)',
     '--border': '0',
     '--shadow': 'var(--shadow-x-large)',
   },
   outlined: {
-    '--color': 'var(--color-primary)',
-    '--background': 'var(--color-base)',
+    '--color': 'var(--color-foreground)',
+    '--background': 'var(--color-background)',
     '--border': '1px solid var(--color-primary)',
     '--shadow': 'var(--shadow-outline)',
   },

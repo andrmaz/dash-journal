@@ -1,6 +1,6 @@
 import {DialogContent, DialogOverlay} from '@reach/dialog'
 
-import {Icon} from './Icon'
+import {Icon} from '../Icon'
 import React from 'react'
 import VisuallyHidden from '@reach/visually-hidden'
 import {fadeIn} from '~/utils/animations'
@@ -13,8 +13,8 @@ interface Props {
 type ModalProps = React.PropsWithChildren<Props>
 
 export default function Modal(props: ModalProps) {
-  const { isOpen, onDismiss, children } = props
-  
+  const {isOpen, onDismiss, children} = props
+
   return (
     <Overlay isOpen={isOpen} onDismiss={onDismiss}>
       <Backdrop />
