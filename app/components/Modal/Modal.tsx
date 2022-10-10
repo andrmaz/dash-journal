@@ -10,7 +10,7 @@ interface Props {
   isOpen: boolean
   onDismiss: () => void
 }
-type ModalProps = React.PropsWithChildren<Props>
+export type ModalProps = React.PropsWithChildren<Props>
 
 export default function Modal(props: ModalProps) {
   const {isOpen, onDismiss, children} = props

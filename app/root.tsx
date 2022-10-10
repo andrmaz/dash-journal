@@ -1,9 +1,3 @@
-import type {
-  ActionFunction,
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -13,6 +7,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
+import type {LinksFunction, LoaderFunction, MetaFunction} from '@remix-run/node'
 
 import {GlobalStyle} from './styles'
 import {Layout} from './composer/Layout'
