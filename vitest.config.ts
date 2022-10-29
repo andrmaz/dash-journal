@@ -1,15 +1,17 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import {defineConfig} from 'vite'
-import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import {defineConfig} from 'vitest/config'
+import {mergeConfig} from 'vite'
+import viteConfig from './vite.config'
 
-export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
-  test: {
-    globals: true,
-    environment: 'happy-dom',
-    setupFiles: ['./test/setup-test-env.ts'],
-  },
-})
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      globals: true,
+      environment: 'happy-dom',
+      setupFiles: ['./test/setup-test-env.ts'],
+    },
+  })
+)

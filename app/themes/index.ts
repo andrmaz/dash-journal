@@ -1,18 +1,35 @@
-import type {DefaultTheme} from 'styled-components'
+import type {Alpha, DefaultTheme} from 'styled-components'
 
-enum Colors {
-  base = '#fff',
-  grayish_blue = '#98a1b0',
-  cyan_blue = '#3f7ef8',
-  green = '#2ccd48',
-  blue_magenta = '#3a393f',
-  brown = '#dca048',
-  watermelon = '#ff7e85',
+import {formatFactor} from '~/utils/theme'
+
+const opacity: Record<Alpha, number> = {
+  '300': 0.3,
+  '500': 0.5,
+  '700': 0.7,
+  '1000': 1,
 }
-enum Weights {
-  normal = 500,
-  medium = 600,
-  bold = 800,
+
+const createColorPallet = (
+  color: Color,
+  alpha: Array<keyof typeof opacity>
+): Record<Alpha, string> =>
+  Object.assign(
+    {},
+    ...alpha.map(a => ({
+      [a]: `hsla(${color}, ${opacity[a]})`,
+    }))
+  )
+
+/* CSS HSL */
+enum Color {
+  white = '0, 0%, 100%',
+  black = '0.44,	0.22%, 0.10%',
+  gray = '220, 5%, 40%',
+  oldRose = '359, 38%, 65%',
+  palePink = '353, 52%, 90%',
+  desertSand = '28, 37%, 75%',
+  tuscany = '16, 23%, 62%',
+  catawba = '340, 27 %, 36%',
 }
 
 enum Breakpoints {
@@ -21,21 +38,41 @@ enum Breakpoints {
   laptop = 1300,
 }
 
+const alphas = Object.keys(opacity) as Alpha[]
+
 const theme: DefaultTheme = {
+  spacing: factor => formatFactor(factor),
   colors: {
-    base: Colors.base,
-    grayish_blue: Colors.grayish_blue,
-    cyan_blue: Colors.cyan_blue,
-    green: Colors.green,
-    blue_magenta: Colors.blue_magenta,
-    brown: Colors.brown,
-    watermelon: Colors.watermelon,
+    white: `hsla(${Color.white}, ${opacity['1000']})`,
+    black: `hsla(${Color.black}, ${opacity['1000']})`,
+    gray: createColorPallet(Color.gray, alphas),
+    oldRose: createColorPallet(Color.oldRose, alphas),
+    palePink: createColorPallet(Color.palePink, alphas),
+    desertSand: createColorPallet(Color.desertSand, alphas),
+    tuscany: createColorPallet(Color.tuscany, alphas),
+    catawba: createColorPallet(Color.oldRose, alphas),
   },
   fonts: {
+    size: {
+      small: '0.875rem',
+      medium: '1rem',
+      large: '1.125rem',
+      huge: '1.5rem',
+    },
     weight: {
-      normal: Weights.bold,
-      medium: Weights.medium,
-      bold: Weights.bold,
+      normal: 500,
+      medium: 600,
+      bold: 800,
+    },
+    spacing: {
+      dense: '-0.015em',
+      normal: 'normal',
+      loose: '0.075em',
+    },
+    height: {
+      dense: 1.4,
+      normal: 1.8,
+      loose: 2.2,
     },
   },
   motion: {
