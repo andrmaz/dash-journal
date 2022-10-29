@@ -2,6 +2,11 @@
     "editor.fontFamily": "",
     "cSpell.words": [
         "cormorantinfant",
-        "Tablist"
-    ]
+        "Tablist",
+        "typecheck"
+    ],
+    "yaml.schemas": {
+        "file:///home/andrmaz/.vscode-server/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+        "https://json.schemastore.org/github-workflow.json": "file:///home/andrmaz/code/projects/dash-journal/.github/workflows/deploy.yml"
+    }
 }
