@@ -3,11 +3,11 @@ import React from 'react'
 import {formatDateEvent} from '~/utils/date'
 import styled from 'styled-components'
 
-export const Slot = ({event}: EventProps) => {
+export const Slot = (props: EventProps) => {
   return (
     <Wrapper>
-      <Title>{event.title}</Title>
-      <Date>{formatDateEvent(event.start)}</Date>
+      <Title>{props.event.title}</Title>
+      <Date>{formatDateEvent(props.event.start)}</Date>
     </Wrapper>
   )
 }

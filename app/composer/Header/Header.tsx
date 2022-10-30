@@ -7,10 +7,10 @@ interface HeaderProps {
   title: string
 }
 
-export const Header = ({title}: HeaderProps) => (
+export const Header = (props: HeaderProps) => (
   <Wrapper>
     <div>
-      <Title>{title}</Title>
+      <Title>{props.title}</Title>
     </div>
     <Container>
       {icons.map(({action, name}) => (

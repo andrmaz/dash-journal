@@ -18,23 +18,23 @@ interface TabProps extends React.ButtonHTMLAttributes<{}> {
 }
 type Ref = HTMLButtonElement
 
-export const Tab = React.forwardRef<Ref, TabProps>(
-  ({label, selected, onClick, ...delegated}, ref) => {
-    return (
-      <Button
-        role='tab'
-        aria-selected={selected}
-        onClick={onClick}
-        {...delegated}
-        type='button'
-        tabIndex={-1}
-        ref={ref}
-      >
-        <Label>{label}</Label>
-      </Button>
-    )
-  }
-)
+export const Tab = React.forwardRef<Ref, TabProps>((props, ref) => {
+  const {label, selected, onClick, ...delegated} = props
+
+  return (
+    <Button
+      role='tab'
+      aria-selected={selected}
+      onClick={onClick}
+      {...delegated}
+      type='button'
+      tabIndex={-1}
+      ref={ref}
+    >
+      <Label>{label}</Label>
+    </Button>
+  )
+})
 Tab.displayName = 'Tab'
 
 const Button = styled.button`

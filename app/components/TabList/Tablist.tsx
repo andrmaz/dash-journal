@@ -9,11 +9,11 @@ interface TablistProps {
   labels: string[]
 }
 
-export const Tablist = ({labels}: TablistProps) => {
+export const Tablist = (props: TablistProps) => {
   const initial = 0
   const [selected, setSelected] = React.useState<number>(initial)
   const [handleKeyPress, tabRef] = useTabsKey(
-    labels.length - 1,
+    props.labels.length - 1,
     selected,
     setSelected
   )
@@ -24,7 +24,7 @@ export const Tablist = ({labels}: TablistProps) => {
       aria-orientation='horizontal'
       onKeyDown={handleKeyPress}
     >
-      {labels.map((label, index) => (
+      {props.labels.map((label, index) => (
         <Tab
           key={`${label}-${index}`}
           label={label}
