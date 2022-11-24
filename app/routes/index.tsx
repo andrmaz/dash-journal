@@ -1,7 +1,7 @@
 import type {ActionFunction, LoaderFunction} from '@remix-run/node'
+import {createMeeting, editMeeting} from '~/models/meeting.server'
 
 import type {Prisma} from '@prisma/client'
-import {createMeeting} from '~/models/meeting.server'
 import {formatDateInput} from '~/utils/date'
 import {getUserId} from '~/session.server'
 import {json} from '@remix-run/node'
@@ -24,6 +24,7 @@ export const action: ActionFunction = async args => {
   if (!userId) return redirect('/login')
 
   const formData = await args.request.formData()
+  const id = formData.get('id')
   const title = formData.get('title')
   const date = formData.get('date')
   const start = formData.get('start')
@@ -53,7 +54,7 @@ export const action: ActionFunction = async args => {
   const input: Prisma.MeetingCreateInput = {
     title,
     start: formatDateInput(date, start),
-    end: formatDateInput(date, start),
+    end: formatDateInput(date, end),
     user: {
       connect: {id: userId},
     },
@@ -64,8 +65,13 @@ export const action: ActionFunction = async args => {
       connect: {id: projectId},
     },
   }
-  const meeting = await createMeeting(input)
 
+  if (typeof id === 'string' && id.length) {
+    const meeting = await editMeeting(id, input)
+    return json({meeting}, {status: 200})
+  }
+
+  const meeting = await createMeeting(input)
   return json({meeting}, {status: 201})
 }
 

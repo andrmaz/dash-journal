@@ -14,6 +14,13 @@ export async function createMeeting(data: Prisma.MeetingCreateInput) {
   return prisma.meeting.create({data})
 }
 
+export async function editMeeting(
+  id: Meeting['id'],
+  data: Prisma.MeetingUncheckedUpdateInput
+) {
+  return prisma.meeting.update({where: {id}, data})
+}
+
 export async function deleteMeeting(id: Meeting['id']) {
   return prisma.meeting.delete({where: {id}})
 }

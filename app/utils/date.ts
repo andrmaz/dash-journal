@@ -18,11 +18,20 @@ export function formatDateInput(date: string, input: string) {
   return setMinutes(setHours(new Date(date), hours), minutes)
 }
 
-export function formatDateDefault(date?: Date) {
-  if (!date) return '--:--'
-  const hours = getHours(date)
-  const minutes = getMinutes(date)
-  return `${hours}:${minutes}`
+export function formatDateTime(date?: Date | string) {
+  if (!date) return
+  const hours = String(getHours(new Date(date)))
+  const minutes = String(getMinutes(new Date(date)))
+  return `${format24Hour(hours)}:${format24Hour(minutes)}`
+}
+
+/**
+ * Return a time value in 24-hour format that includes leading zeros.
+ * @param  {string} time
+ * @returns string
+ */
+function format24Hour(time: string): string {
+  return time.length === 1 ? `0${time}` : time
 }
 
 export const localizer = dateFnsLocalizer({

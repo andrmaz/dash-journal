@@ -25,8 +25,9 @@ export const SelectClients = (props: SelectProps) => {
       <select
         id='client'
         name='client'
-        value={props.value}
+        value={props.value || props.defaultValue}
         onChange={props.onChange}
+        required
       >
         {fetcher.state === 'submitting' ? <>Loading ...</> : null}
         {!fetcher.data ? (
@@ -35,11 +36,7 @@ export const SelectClients = (props: SelectProps) => {
           <>
             <option value='' />
             {fetcher.data.map(client => (
-              <option
-                value={client.id}
-                defaultValue={props.defaultValue}
-                key={client.id}
-              >
+              <option value={client.id} key={client.id}>
                 {client.name}
               </option>
             ))}
@@ -55,6 +52,11 @@ export const SelectClients = (props: SelectProps) => {
 export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
   const fetcher = useFetcher<Project[]>()
 
+  const [value, setValue] = React.useState<Project['id']>('')
+
+  const onChange: React.ChangeEventHandler<HTMLSelectElement> = event =>
+    setValue(event.target.value)
+
   React.useEffect(() => {
     if (fetcher.type === 'init') {
       const params = new URLSearchParams()
@@ -68,7 +70,13 @@ export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
   return (
     <div>
       <label htmlFor='project'>Project:</label>
-      <select id='project' name='project'>
+      <select
+        id='project'
+        name='project'
+        value={value || props.defaultValue}
+        onChange={onChange}
+        required
+      >
         {fetcher.state === 'submitting' ? <>Loading ...</> : null}
         {!fetcher.data ? (
           <>Failed to load projects </>
@@ -76,11 +84,7 @@ export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
           <>
             <option value='' />
             {fetcher.data.map(project => (
-              <option
-                value={project.id}
-                defaultValue={props.defaultValue}
-                key={project.id}
-              >
+              <option value={project.id} key={project.id}>
                 {project.name}
               </option>
             ))}

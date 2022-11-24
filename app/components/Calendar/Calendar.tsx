@@ -20,10 +20,12 @@ export const Calendar = (props: CalendarProps) => {
   const onDismiss = () => setIsOpen(false)
 
   const onSelectSlot = (slot: SlotInfo) => {
+    setMeeting(null)
     setDate(slot.start)
     onOpen()
   }
   const onDrillDown = (date: Date) => {
+    setMeeting(null)
     setDate(date)
     onOpen()
   }
