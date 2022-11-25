@@ -7,9 +7,14 @@ import getDay from 'date-fns/getDay'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 
+export function formatDateMeeting(date?: Date) {
+  if (!date) return ''
+  return formatDate(date, 'MMMM, do')
+}
+
 export function formatDateEvent(date?: Date) {
   if (!date) return '-'
-  return format(new Date(date), 'HH:mm')
+  return formatDate(date, 'HH:mm')
 }
 
 export function formatDateInput(date: string, input: string) {
@@ -32,6 +37,10 @@ export function formatDateTime(date?: Date | string) {
  */
 function format24Hour(time: string): string {
   return time.length === 1 ? `0${time}` : time
+}
+
+function formatDate(date: Date | string, pattern: string): string {
+  return format(new Date(date), pattern)
 }
 
 export const localizer = dateFnsLocalizer({

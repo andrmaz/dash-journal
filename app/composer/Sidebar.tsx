@@ -14,7 +14,7 @@ export const Sidebar = (props: SidebarProps) => {
 
   React.useEffect(() => {
     if (fetcher.type === 'init') {
-      fetcher.load('/meetings')
+      fetcher.load('/meetings?index')
     }
   }, [fetcher])
 

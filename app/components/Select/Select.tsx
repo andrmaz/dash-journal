@@ -29,7 +29,7 @@ export const SelectClients = (props: SelectProps) => {
         onChange={props.onChange}
         required
       >
-        {fetcher.state === 'submitting' ? <>Loading ...</> : null}
+        {fetcher.state === 'loading' ? <>Loading ...</> : null}
         {!fetcher.data ? (
           <>Failed to load clients </>
         ) : fetcher.data.length ? (
@@ -77,7 +77,7 @@ export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
         onChange={onChange}
         required
       >
-        {fetcher.state === 'submitting' ? <>Loading ...</> : null}
+        {fetcher.state === 'loading' ? <>Loading ...</> : null}
         {!fetcher.data ? (
           <>Failed to load projects </>
         ) : fetcher.data.length ? (

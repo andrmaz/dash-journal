@@ -24,3 +24,18 @@ export async function editMeeting(
 export async function deleteMeeting(id: Meeting['id']) {
   return prisma.meeting.delete({where: {id}})
 }
+
+export async function getClosestMeetingByUserId(userId: User['id']) {
+  return prisma.meeting.findFirst({
+    where: {
+      AND: [
+        {userId},
+        {
+          start: {
+            gte: new Date(),
+          },
+        },
+      ],
+    },
+  })
+}
