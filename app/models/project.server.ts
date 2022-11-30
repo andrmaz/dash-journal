@@ -1,4 +1,4 @@
-import type {Client, Prisma, Project} from '@prisma/client'
+import type {Client, Prisma, Project, User} from '@prisma/client'
 
 import {prisma} from '~/db.server'
 
@@ -6,12 +6,23 @@ export async function getProjectById(id: Project['id']) {
   return prisma.project.findUnique({where: {id}})
 }
 
-export async function getProjectList(clientId: Client['id']) {
+export async function getUserProjects(userId: User['id']) {
+  return prisma.project.findMany({where: {userId}})
+}
+
+export async function getClientProjects(clientId: Client['id']) {
   return prisma.project.findMany({where: {clientId}})
 }
 
 export async function createProject(data: Prisma.ProjectCreateInput) {
   return prisma.project.create({data})
+}
+
+export async function editProject(
+  id: Project['id'],
+  data: Prisma.ProjectUncheckedUpdateInput
+) {
+  return prisma.project.update({where: {id}, data})
 }
 
 export async function deleteProject(id: Project['id']) {
