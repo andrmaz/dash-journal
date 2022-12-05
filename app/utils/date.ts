@@ -1,11 +1,19 @@
 import {getHours, getMinutes, setHours, setMinutes} from 'date-fns'
 
+import type {Interval} from '~/routes/dashboard'
 import {dateFnsLocalizer} from 'react-big-calendar'
 import enUS from 'date-fns/locale/en-US'
 import format from 'date-fns/format'
 import getDay from 'date-fns/getDay'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
+
+export function getIntervalDateRange(interval: Interval) {
+  if (interval === 'remaining') return [now, future] as const
+  if (interval === 'ongoing') return [now, now] as const
+  if (interval === 'completed') return [past, now] as const
+  return [past, future] as const
+}
 
 export function formatDateMeeting(date?: Date) {
   if (!date) return ''
@@ -52,3 +60,7 @@ export const localizer = dateFnsLocalizer({
     'en-US': enUS,
   },
 })
+
+const future = new Date(new Date().setFullYear(3000))
+const now = new Date()
+const past = new Date(0)
