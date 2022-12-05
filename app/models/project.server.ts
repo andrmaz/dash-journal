@@ -6,12 +6,30 @@ export async function getProjectById(id: Project['id']) {
   return prisma.project.findUnique({where: {id}})
 }
 
+export async function getProjectList() {
+  return prisma.project.findMany({
+    include: {
+      client: true,
+    },
+  })
+}
+
 export async function getUserProjects(userId: User['id']) {
-  return prisma.project.findMany({where: {userId}})
+  return prisma.project.findMany({
+    where: {userId},
+    include: {
+      user: true,
+    },
+  })
 }
 
 export async function getClientProjects(clientId: Client['id']) {
-  return prisma.project.findMany({where: {clientId}})
+  return prisma.project.findMany({
+    where: {clientId},
+    include: {
+      client: true,
+    },
+  })
 }
 
 export async function createProject(data: Prisma.ProjectCreateInput) {
