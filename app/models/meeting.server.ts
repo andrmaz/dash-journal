@@ -6,12 +6,34 @@ export async function getMeetingById(id: Meeting['id']) {
   return prisma.meeting.findUnique({where: {id}})
 }
 
+export async function getMeetingList() {
+  return prisma.meeting.findMany({
+    include: {
+      client: true,
+      project: true,
+    },
+    orderBy: {
+      start: 'desc',
+    },
+  })
+}
+
 export async function getUserMeetings(userId: User['id']) {
-  return prisma.meeting.findMany({where: {userId}})
+  return prisma.meeting.findMany({
+    where: {userId},
+    include: {
+      user: true,
+    },
+  })
 }
 
 export async function getProjectMeetings(projectId: Project['id']) {
-  return prisma.meeting.findMany({where: {projectId}})
+  return prisma.meeting.findMany({
+    where: {projectId},
+    include: {
+      project: true,
+    },
+  })
 }
 
 export async function createMeeting(data: Prisma.MeetingCreateInput) {
@@ -50,12 +72,12 @@ export async function getIntervalMeetings(from: Date, to: Date) {
       AND: [
         {
           start: {
-            gte: from,
+            gt: from,
           },
         },
         {
           end: {
-            lte: to,
+            lt: to,
           },
         },
       ],

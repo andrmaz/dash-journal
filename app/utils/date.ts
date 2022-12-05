@@ -1,4 +1,12 @@
-import {getHours, getMinutes, setHours, setMinutes} from 'date-fns'
+import {
+  differenceInHours,
+  endOfToday,
+  getHours,
+  getMinutes,
+  setHours,
+  setMinutes,
+  startOfToday,
+} from 'date-fns'
 
 import type {Interval} from '~/routes/dashboard'
 import {dateFnsLocalizer} from 'react-big-calendar'
@@ -8,10 +16,14 @@ import getDay from 'date-fns/getDay'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 
+export function calculateDuration(dateLeft: Date, dateRight: Date) {
+  return differenceInHours(new Date(dateLeft), new Date(dateRight))
+}
+
 export function getIntervalDateRange(interval: Interval) {
-  if (interval === 'remaining') return [now, future] as const
-  if (interval === 'ongoing') return [now, now] as const
-  if (interval === 'completed') return [past, now] as const
+  if (interval === 'remaining') return [endOfToday(), future] as const
+  if (interval === 'ongoing') return [startOfToday(), endOfToday()] as const
+  if (interval === 'completed') return [past, startOfToday()] as const
   return [past, future] as const
 }
 
@@ -62,5 +74,4 @@ export const localizer = dateFnsLocalizer({
 })
 
 const future = new Date(new Date().setFullYear(3000))
-const now = new Date()
 const past = new Date(0)
