@@ -14,6 +14,7 @@ describe('smoke tests', () => {
 
     cy.visit('/')
     cy.findByRole('link', {name: /sign up/i}).click()
+    cy.wait(1000)
 
     cy.findByRole('textbox', {name: /email/i}).type(loginForm.email)
     cy.findByLabelText(/password/i).type(loginForm.password)
