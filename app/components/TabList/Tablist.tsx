@@ -2,23 +2,23 @@ import * as React from 'react'
 
 import {Tab} from '../Tab'
 import {addTabProps} from '~/utils/a11y'
-import styled from 'styled-components'
 import {useTabsKey} from '~/hooks/useTabsKey'
 
 interface TablistProps {
   labels: string[]
+  selected: number
+  setSelected: React.Dispatch<React.SetStateAction<number>>
 }
 
-export const Tablist = ({labels}: TablistProps) => {
-  const initial = 0
-  const [selected, setSelected] = React.useState<number>(initial)
+export const Tablist = (props: TablistProps) => {
+  const {labels, selected, setSelected} = props
   const [handleKeyPress, tabRef] = useTabsKey(
     labels.length - 1,
     selected,
     setSelected
   )
   return (
-    <Wrapper
+    <div
       role='tablist'
       aria-labelledby='tablist'
       aria-orientation='horizontal'
@@ -34,10 +34,6 @@ export const Tablist = ({labels}: TablistProps) => {
           {...addTabProps(index)}
         />
       ))}
-    </Wrapper>
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  min-width: ${p => p.theme.spacing(140)};
-`

@@ -1,24 +1,22 @@
 import {Calendar} from '~/components/Calendar'
-import type {Event} from 'react-big-calendar'
 import {Manager} from '~/components/Manager'
+import type {Meeting} from '@prisma/client'
 import React from 'react'
 import styled from 'styled-components'
+import {useFetcher} from '@remix-run/react'
 
 interface SidebarProps {}
 
 export const Sidebar = (props: SidebarProps) => {
-  const [events, setEvents] = React.useState<Event[]>(
-    [
-      {
-        title: 'event 1',
-        publishAt: '2022-08-01',
-      },
-    ].map(e => ({
-      ...e,
-      start: new Date(e.publishAt),
-      end: new Date(e.publishAt),
-    }))
-  )
+  const fetcher = useFetcher<Meeting[]>()
+
+  const events = fetcher.data?.length ? fetcher.data : []
+
+  React.useEffect(() => {
+    if (fetcher.type === 'init') {
+      fetcher.load('/meetings?index')
+    }
+  }, [fetcher])
 
   return (
     <Wrapper>

@@ -10,12 +10,12 @@ interface NavbarProps {
   user: User | null
 }
 
-export const Navbar = ({user}: NavbarProps) => {
+export const Navbar = (props: NavbarProps) => {
   const location = useLocation()
 
   return (
     <Navigation>
-      <span>{user?.email}</span>
+      <span>{props.user?.email}</span>
       <List>
         {items.map(({label, icon, pathname}) => {
           const variant = location.pathname === pathname ? 'contained' : 'text'

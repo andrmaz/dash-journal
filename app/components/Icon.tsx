@@ -1,6 +1,5 @@
+import * as React from 'react'
 import * as icon from 'react-feather'
-
-import React from 'react'
 
 export type Name =
   | 'Activity'
@@ -15,7 +14,8 @@ export interface IconProps extends icon.IconProps {
   name: Name
 }
 
-export const Icon = ({name, ...delegated}: IconProps) => {
+export const Icon = (props: IconProps) => {
+  const {name, ...delegated} = props
   const Component = icon[name]
   return <Component {...delegated} />
 }

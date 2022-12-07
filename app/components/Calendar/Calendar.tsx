@@ -1,34 +1,36 @@
 import * as React from 'react'
 
-import type {Event, SlotInfo} from 'react-big-calendar'
-
 import EventModal from '~/composer/EventModal'
+import type {Meeting} from '@prisma/client'
 import {Calendar as ReactBigCalendar} from 'react-big-calendar'
 import {Slot} from '../Slot'
+import type {SlotInfo} from 'react-big-calendar'
 import {localizer} from '~/utils/date'
 import styled from 'styled-components'
 
 interface CalendarProps {
-  events: Event[]
+  events: Meeting[]
 }
 
 export const Calendar = (props: CalendarProps) => {
   const [date, setDate] = React.useState<Date | null>(null)
-  const [event, setEvent] = React.useState<Event | null>(null)
+  const [meeting, setMeeting] = React.useState<Meeting | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
   const onOpen = () => setIsOpen(true)
   const onDismiss = () => setIsOpen(false)
 
   const onSelectSlot = (slot: SlotInfo) => {
+    setMeeting(null)
     setDate(slot.start)
     onOpen()
   }
   const onDrillDown = (date: Date) => {
+    setMeeting(null)
     setDate(date)
     onOpen()
   }
-  const onSelectEvent = (event: Event) => {
-    setEvent(event)
+  const onSelectEvent = (event: Meeting) => {
+    setMeeting(event)
     onOpen()
   }
 
@@ -37,8 +39,8 @@ export const Calendar = (props: CalendarProps) => {
       <EventModal
         isOpen={isOpen}
         onDismiss={onDismiss}
-        event={event}
-        date={date}
+        event={meeting}
+        date={date || new Date()}
       />
       <ReactBigCalendar
         localizer={localizer}

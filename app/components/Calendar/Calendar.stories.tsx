@@ -22,9 +22,15 @@ export const Event = Template.bind({})
 Event.args = {
   events: [
     {
-      title: 'event',
-      start: new Date('2022-08-01'),
-      end: new Date('2022-08-01'),
+      id: '',
+      title: '',
+      start: new Date(),
+      end: new Date(),
+      userId: '',
+      clientId: '',
+      projectId: '',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ],
 }

@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import type {Event} from 'react-big-calendar'
-import {Meeting} from '~/components/Meeting'
+import {Event} from '~/components/Event'
+import type {Meeting} from '@prisma/client'
 import Modal from '~/components/Modal'
 
 interface EventModalProps {
   isOpen: boolean
   onDismiss: () => void
-  event: Event | null
-  date: Date | null
+  event: Meeting | null
+  date: Date
 }
 
 const EventModal = (props: EventModalProps) => {
@@ -16,7 +16,7 @@ const EventModal = (props: EventModalProps) => {
 
   return (
     <Modal isOpen={isOpen} onDismiss={onDismiss}>
-      <Meeting event={event} start={date} />
+      <Event event={event} date={date} />
     </Modal>
   )
 }
