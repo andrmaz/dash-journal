@@ -1,18 +1,30 @@
-import type {Name} from '~/components/Icon'
+enum Path {
+  dashboard = '/dashboard',
+  payments = '/payments',
+  profile = '/profile',
+  settings = '/settings',
+  statistics = '/statistics',
+  support = '/support',
+}
 
-export const items: {label: string; icon: Name; pathname: string}[] = [
-  {label: 'dashboard', icon: 'Activity', pathname: '/dashboard'},
-  {label: 'payments', icon: 'CreditCard', pathname: '/payments'},
-  {label: 'statistics', icon: 'BarChart', pathname: '/statistics'},
-]
-
-export const routes = new Map([
-  ['/dashboard', 'dashboard'],
-  ['/payments', 'payments'],
-  ['/statistics', 'statistics'],
+export const routes = new Map<string, string>([
+  [Path.dashboard, 'dashboard'],
+  [Path.payments, 'payments'],
+  [Path.profile, 'profile'],
+  [Path.settings, 'settings'],
+  [Path.support, 'support'],
+  [Path.statistics, 'statistics'],
 ])
 
-export const icons: {action: string; name: Name}[] = [
-  {action: 'Alert', name: 'AlertCircle'},
-  {action: 'Settings', name: 'Settings'},
-]
+export const icons = {
+  header: [
+    {label: 'notification', name: 'AlertCircle', pathname: Path.support},
+    {label: 'settings', name: 'Settings', pathname: Path.settings},
+  ],
+  navbar: [
+    {label: 'dashboard', name: 'Activity', pathname: Path.dashboard},
+    {label: 'statistics', name: 'BarChart', pathname: Path.statistics},
+    {label: 'payments', name: 'CreditCard', pathname: Path.payments},
+    {label: 'profile', name: 'User', pathname: Path.profile},
+  ],
+} as const

@@ -26,7 +26,7 @@ export const loader: LoaderFunction = async args => {
   return json<LoaderData>({meetings})
 }
 
-const labels: Capitalize<Interval>[] = ['Remaining', 'Ongoing', 'Completed']
+const labels: Interval[] = ['remaining', 'ongoing', 'completed']
 
 export default function Dashboard() {
   const loader = useLoaderData<LoaderData>()
@@ -35,7 +35,7 @@ export default function Dashboard() {
   const [selected, setSelected] = React.useState<number>(0)
 
   React.useEffect(() => {
-    setSearchParams({interval: labels[selected].toLowerCase()})
+    setSearchParams({interval: labels[selected]})
   }, [selected, setSearchParams])
 
   const props = {labels, selected, setSelected}
@@ -43,7 +43,7 @@ export default function Dashboard() {
   return (
     <Wrapper>
       <Header>
-        <h3>{labels[selected]} Meetings</h3>
+        <Title>{labels[selected]} Meetings</Title>
         <Tablist {...props} />
       </Header>
       {loader.meetings.map(meeting => (
@@ -60,4 +60,7 @@ const Header = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
+`
+const Title = styled.h3`
+  text-transform: capitalize;
 `

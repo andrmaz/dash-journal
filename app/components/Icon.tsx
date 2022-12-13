@@ -3,11 +3,13 @@ import * as icon from 'react-feather'
 
 export type Name =
   | 'Activity'
+  | 'AlertCircle'
   | 'BarChart'
   | 'CreditCard'
-  | 'AlertCircle'
-  | 'Settings'
   | 'LogOut'
+  | 'MessageCircle'
+  | 'Settings'
+  | 'User'
   | 'X'
 
 export interface IconProps extends icon.IconProps {

@@ -11,17 +11,17 @@ interface ChipProps extends ButtonProps {
   /**
    * Provides text for screen readers that is visually hidden
    */
-  action: string
+  label: string
   /**
    * Overrides the icon properties
    */
   icon: IconProps
 }
 
-export const Chip = ({action, icon, ...delegated}: ChipProps) => {
+export const Chip = ({label, icon, ...delegated}: ChipProps) => {
   return (
     <StyledButton {...delegated}>
-      <VisuallyHidden>{action}</VisuallyHidden>
+      <VisuallyHidden>{label}</VisuallyHidden>
       <StyledIcon {...icon} color='grey' />
     </StyledButton>
   )

@@ -10,6 +10,15 @@ export async function getClientList(userId: User['id']) {
   return prisma.client.findMany({where: {userId}})
 }
 
+export async function getUserClients(userId: User['id']) {
+  return prisma.client.findMany({
+    where: {userId},
+    include: {
+      user: true,
+    },
+  })
+}
+
 export async function createClient(data: Prisma.ClientCreateInput) {
   return prisma.client.create({data})
 }

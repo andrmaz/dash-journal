@@ -3,7 +3,7 @@ import {NavLink, useLocation} from '@remix-run/react'
 import React from 'react'
 import {Stack} from '../components/Stack'
 import type {User} from '@prisma/client'
-import {items} from '~/data'
+import {icons} from '~/data'
 import styled from 'styled-components'
 
 interface NavbarProps {
@@ -17,17 +17,17 @@ export const Navbar = (props: NavbarProps) => {
     <Navigation>
       <span>{props.user?.email}</span>
       <List>
-        {items.map(({label, icon, pathname}) => {
+        {icons.navbar.map(({label, name, pathname}) => {
           const variant = location.pathname === pathname ? 'contained' : 'text'
           return (
             <Item to={{pathname}} as={NavLink} key={label}>
-              <Stack variant={variant} label={label} icon={icon} />
+              <Stack variant={variant} label={label} name={name} />
             </Item>
           )
         })}
       </List>
       <NavLink to={{pathname: '/login'}}>
-        <Stack variant='none' label='logout' icon='LogOut' />
+        <Stack variant='none' label='logout' name='LogOut' />
       </NavLink>
     </Navigation>
   )
