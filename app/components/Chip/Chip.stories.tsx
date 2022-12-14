@@ -13,12 +13,12 @@ const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  action: 'Settings',
+  label: 'Settings',
   icon: {name: 'Settings'},
 }
 
 export const Unread = Template.bind({})
 Unread.args = {
-  action: 'Alert',
+  label: 'Alert',
   icon: {name: 'AlertCircle'},
 }
