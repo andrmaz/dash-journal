@@ -15,19 +15,19 @@ export const Text = Template.bind({})
 Text.args = {
   variant: 'text',
   label: 'dashboard',
-  icon: 'Activity',
+  name: 'Activity',
 }
 
 export const Contained = Template.bind({})
 Contained.args = {
   variant: 'contained',
   label: 'payment',
-  icon: 'CreditCard',
+  name: 'CreditCard',
 }
 
 export const Outlined = Template.bind({})
 Outlined.args = {
   variant: 'outlined',
   label: 'statistics',
-  icon: 'BarChart',
+  name: 'BarChart',
 }

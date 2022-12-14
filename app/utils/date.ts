@@ -27,6 +27,11 @@ export function getIntervalDateRange(interval: Interval) {
   return [past, future] as const
 }
 
+export function formatDateUser(date?: Date) {
+  if (!date) return ''
+  return formatDate(date, 'do MMMM yyyy')
+}
+
 export function formatDateMeeting(date?: Date) {
   if (!date) return ''
   return formatDate(date, 'MMMM, do')

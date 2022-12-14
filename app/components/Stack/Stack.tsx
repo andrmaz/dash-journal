@@ -16,7 +16,7 @@ interface StackProps {
   /**
    * The name of the icon to show in the tab
    */
-  icon: Name
+  name: Name
 }
 
 const STYLES = {
@@ -47,12 +47,12 @@ const STYLES = {
 } as Record<string, React.CSSProperties>
 
 export const Stack = (props: StackProps) => {
-  const {variant, label, icon} = props
+  const {variant, label, name} = props
   const style = STYLES[variant]
 
   return (
     <Wrapper style={style}>
-      <Icon name={icon} size='small' />
+      <Icon name={name} size='small' />
       <Label>{label}</Label>
     </Wrapper>
   )

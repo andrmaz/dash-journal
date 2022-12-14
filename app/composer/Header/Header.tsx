@@ -13,8 +13,8 @@ export const Header = (props: HeaderProps) => (
       <Title>{props.title}</Title>
     </div>
     <Container>
-      {icons.map(({action, name}) => (
-        <Chip action={action} icon={{name}} key={action} />
+      {icons.header.map(({label, name}) => (
+        <Chip label={label} icon={{name}} key={label} />
       ))}
     </Container>
   </Wrapper>
