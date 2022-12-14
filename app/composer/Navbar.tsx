@@ -18,7 +18,9 @@ export const Navbar = (props: NavbarProps) => {
       <span>{props.user?.email}</span>
       <List>
         {icons.navbar.map(({label, name, pathname}) => {
-          const variant = location.pathname === pathname ? 'contained' : 'text'
+          const variant = location.pathname.includes(pathname)
+            ? 'contained'
+            : 'text'
           return (
             <Item to={{pathname}} as={NavLink} key={label}>
               <Stack variant={variant} label={label} name={name} />

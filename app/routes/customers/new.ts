@@ -1,4 +1,5 @@
 import type {ActionFunction} from '@remix-run/server-runtime'
+import {Path} from '~/data'
 import {createClient} from '~/models/client.server'
 import {getUserId} from '~/session.server'
 import {json} from '@remix-run/server-runtime'
@@ -27,9 +28,9 @@ export const action: ActionFunction = async args => {
       connect: {id: userId},
     },
   })
-  return redirect(`/profile`)
+  return redirect(Path.Clients)
 }
 
-export default function NewProject() {
+export default function NewCustomer() {
   return null
 }

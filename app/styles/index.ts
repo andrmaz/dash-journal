@@ -215,7 +215,7 @@ const GlobalStyle = createGlobalStyle`
         sans-serif;
     }
 
-    h3, h4, h4, h5, h6 {
+    h3, h4, h5, h6 {
         font-family: 'Overpass',
         -apple-system,
         BlinkMacSystemFont,

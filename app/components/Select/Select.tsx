@@ -15,7 +15,7 @@ export const SelectClients = (props: SelectProps) => {
 
   React.useEffect(() => {
     if (fetcher.type === 'init') {
-      fetcher.load('/clients')
+      fetcher.load('/customers')
     }
   }, [fetcher])
 
