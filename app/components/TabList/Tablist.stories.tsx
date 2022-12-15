@@ -11,7 +11,11 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Tablist>
 
-const Template: ComponentStory<typeof Tablist> = args => <Tablist {...args} />
+const Template: ComponentStory<typeof Tablist> = args => {
+  const [selected, setSelected] = React.useState(0)
+  const props = {selected, setSelected}
+  return <Tablist {...args} {...props} />
+}
 
 export const Base = Template.bind({})
 Base.args = {
