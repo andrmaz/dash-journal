@@ -1,10 +1,12 @@
 import * as React from 'react'
 
 import type {ActionFunction, LoaderFunction} from '@remix-run/server-runtime'
-import {Form, useLoaderData, useParams, useTransition} from '@remix-run/react'
+import {useLoaderData, useParams, useTransition} from '@remix-run/react'
 
 import {Accordion} from '~/components/Accordion'
 import {Path} from '~/data'
+import {Project} from '~/components/Project'
+import {ProjectList} from '~/composer/ProjectList'
 import {deleteClient} from '~/models/client.server'
 import {getClientProjects} from '~/models/project.server'
 import {json} from '@remix-run/server-runtime'
@@ -48,47 +50,15 @@ export default function Customer() {
   const disabled = transition.state === 'submitting'
 
   const customer = React.useMemo(
-    () => loader.projects.map(p => p.client.name)[0],
+    () => loader.projects[0].client.name,
     [loader.projects]
   )
 
   return (
     <Wrapper>
-      <section style={{marginBottom: '1.2em'}}>
-        <h2>{customer}</h2>
-        <ul>
-          {loader.projects.map(project => (
-            <li key={project.id}>
-              {project.name} - {project.description}
-            </li>
-          ))}
-        </ul>
-      </section>
+      <ProjectList title={customer} list={loader.projects} />
       <Accordion title='add a new project'>
-        <Form method='post' action='/projects/new' reloadDocument>
-          <fieldset disabled={disabled} style={{paddingLeft: '0.5em'}}>
-            <div>
-              <label htmlFor='id'></label>
-              <input
-                type='hidden'
-                id='id'
-                name='id'
-                value={params.customerId}
-              />
-            </div>
-
-            <div>
-              <label htmlFor='name'>Project name:</label>
-              <input type='text' id='name' name='name' required />
-            </div>
-
-            <div>
-              <label htmlFor='description'>Project description:</label>
-              <input type='text' id='description' name='description' required />
-            </div>
-            <input type='submit' value='Create' style={{marginTop: '0.7em'}} />
-          </fieldset>
-        </Form>
+        <Project id={params.customerId!} disabled={disabled} />
       </Accordion>
     </Wrapper>
   )
