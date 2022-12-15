@@ -33,11 +33,24 @@ export default function Customers() {
             <>Loading ...</>
           ) : (
             <List>
-              {loader.clients.map(client => (
-                <li key={client.id}>
-                  <a href={`/profile/customers/${client.id}`}>{client.name}</a>
-                </li>
-              ))}
+              {loader.clients.map(client => {
+                const to = `/profile/customers/${client.id}`
+                return (
+                  <li key={client.id}>
+                    <a href={to}>{client.name}</a>
+                    <Form method='post' action={to} style={{display: 'inline'}}>
+                      <input type='hidden' name='id' value={client.id} />
+                      <Button
+                        type='submit'
+                        aria-label='delete'
+                        disabled={disabled}
+                      >
+                        &#88;
+                      </Button>
+                    </Form>
+                  </li>
+                )
+              })}
             </List>
           )}
         </section>
@@ -71,4 +84,7 @@ const Container = styled.section`
 `
 const List = styled.ul`
   list-style: inside circle;
+`
+const Button = styled.button`
+  margin-left: 0.3em;
 `
