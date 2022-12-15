@@ -21,7 +21,13 @@ export const Accordion: React.FC<AccordionProps> = props => {
         >
           <Title>
             {props.title}
-            <Icon>{expanded ? '∨' : '∧'}</Icon>
+            <Icon>
+              {expanded ? (
+                <span aria-label='arrow-down'>∨</span>
+              ) : (
+                <span aria-label='arrow-up'>∧</span>
+              )}
+            </Icon>
           </Title>
         </Button>
       </Header>
