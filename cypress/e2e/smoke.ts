@@ -23,4 +23,17 @@ describe('smoke tests', () => {
     cy.wait(1000)
     cy.findByRole('link', {name: /logout/i})
   })
+
+  it('should allow you to add a new client', () => {
+    cy.login().then(() => {
+      const client = faker.company.companyName()
+      cy.findByRole('link', {name: /profile/i}).click()
+      cy.findByRole('link', {name: /clients/i}).click()
+
+      cy.findByLabelText(/name/i).type(client)
+      cy.findByRole('button', {name: /create/i}).click()
+
+      cy.findByRole('link', {name: client})
+    })
+  })
 })
