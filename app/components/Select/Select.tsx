@@ -15,7 +15,7 @@ export const SelectClients = (props: SelectProps) => {
 
   React.useEffect(() => {
     if (fetcher.type === 'init') {
-      fetcher.load('/customers')
+      fetcher.load('/customers?index')
     }
   }, [fetcher])
 
@@ -62,7 +62,7 @@ export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
       const params = new URLSearchParams()
       if (props.value) {
         params.append('clientId', props.value)
-        fetcher.load(`/projects?${params}`)
+        fetcher.load(`/projects?index&${params}`)
       }
     }
   }, [fetcher, props.value])
