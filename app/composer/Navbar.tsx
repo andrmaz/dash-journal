@@ -1,4 +1,4 @@
-import {NavLink, useLocation} from '@remix-run/react'
+import {Form, NavLink, useLocation} from '@remix-run/react'
 
 import React from 'react'
 import {Stack} from '../components/Stack'
@@ -28,9 +28,11 @@ export const Navbar = (props: NavbarProps) => {
           )
         })}
       </List>
-      <NavLink to={{pathname: '/login'}}>
-        <Stack variant='none' label='logout' name='LogOut' />
-      </NavLink>
+      <Form method='post' action='/logout'>
+        <Button type='submit'>
+          <Stack variant='none' label='logout' name='LogOut' />
+        </Button>
+      </Form>
     </Navigation>
   )
 }
@@ -53,3 +55,8 @@ const List = styled.ul`
   gap: ${p => p.theme.spacing(4)};
 `
 const Item = styled.li``
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0;
+`
