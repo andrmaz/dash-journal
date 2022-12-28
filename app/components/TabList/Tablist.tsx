@@ -6,17 +6,13 @@ import {useTabsKey} from '~/hooks/useTabsKey'
 
 interface TablistProps {
   labels: string[]
-  selected: number
-  setSelected: React.Dispatch<React.SetStateAction<number>>
+  tab: number
+  setTab: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const Tablist = (props: TablistProps) => {
-  const {labels, selected, setSelected} = props
-  const [handleKeyPress, tabRef] = useTabsKey(
-    labels.length - 1,
-    selected,
-    setSelected
-  )
+  const {labels, tab, setTab} = props
+  const [handleKeyPress, tabRef] = useTabsKey(labels.length - 1, tab, setTab)
   return (
     <div
       role='tablist'
@@ -24,16 +20,19 @@ export const Tablist = (props: TablistProps) => {
       aria-orientation='horizontal'
       onKeyDown={handleKeyPress}
     >
-      {labels.map((label, index) => (
-        <Tab
-          key={`${label}-${index}`}
-          label={label}
-          selected={selected === index}
-          onClick={() => setSelected(index)}
-          ref={selected === index ? tabRef : null}
-          {...addTabProps(index)}
-        />
-      ))}
+      {labels.map((label, index) => {
+        const selected = tab === index
+        return (
+          <Tab
+            key={`${label}-${index}`}
+            label={label}
+            selected={selected}
+            onClick={() => setTab(index)}
+            ref={selected ? tabRef : null}
+            {...addTabProps(index, selected)}
+          />
+        )
+      })}
     </div>
   )
 }

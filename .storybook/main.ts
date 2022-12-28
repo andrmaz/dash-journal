@@ -1,7 +1,6 @@
 import {UserConfig, mergeConfig} from 'vite'
 
 import type {StorybookViteConfig} from '@storybook/builder-vite'
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 const config: StorybookViteConfig = {
   stories: ['../app/**/*.stories.mdx', '../app/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -39,18 +38,6 @@ const config: StorybookViteConfig = {
   },
   features: {
     interactionsDebugger: true, // Enable playback controls
-  },
-  webpackFinal: async config => {
-    /* webpack configuration to resolve module aliases defined in tsconfig file */
-    if (config.resolve) {
-      config.resolve.plugins = [
-        ...(config.resolve.plugins || []),
-        new TsconfigPathsPlugin({
-          extensions: config.resolve.extensions,
-        }),
-      ]
-    }
-    return config
   },
 }
 

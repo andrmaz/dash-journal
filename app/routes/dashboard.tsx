@@ -1,9 +1,11 @@
+import * as React from 'react'
+
 import {json, redirect} from '@remix-run/server-runtime'
 import {useLoaderData, useSearchParams} from '@remix-run/react'
 
 import type {LoaderFunction} from '@remix-run/server-runtime'
-import React from 'react'
 import {Tablist} from '~/components/TabList'
+import {addTabpanelProps} from '~/utils/a11y'
 import {getIntervalDateRange} from '~/utils/date'
 import {getIntervalMeetings} from '~/models/meeting.server'
 import {getUserId} from '~/session.server'
@@ -32,23 +34,25 @@ export default function Dashboard() {
   const loader = useLoaderData<LoaderData>()
   const [, setSearchParams] = useSearchParams()
 
-  const [selected, setSelected] = React.useState<number>(0)
+  const [tab, setTab] = React.useState<number>(0)
 
   React.useEffect(() => {
-    setSearchParams({interval: labels[selected]})
-  }, [selected, setSearchParams])
+    setSearchParams({interval: labels[tab]})
+  }, [tab, setSearchParams])
 
-  const props = {labels, selected, setSelected}
+  const props = {labels, tab, setTab}
 
   return (
     <Wrapper>
       <Header>
-        <Title>{labels[selected]} Meetings</Title>
+        <Title>{labels[tab]} Meetings</Title>
         <Tablist {...props} />
       </Header>
-      {loader.meetings.map(meeting => (
-        <li key={meeting.id}>{meeting.title}</li>
-      ))}
+      <ul {...addTabpanelProps(tab)}>
+        {loader.meetings.map(meeting => (
+          <li key={meeting.id}>{meeting.title}</li>
+        ))}
+      </ul>
     </Wrapper>
   )
 }

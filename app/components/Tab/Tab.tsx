@@ -22,15 +22,7 @@ export const Tab = React.forwardRef<Ref, TabProps>((props, ref) => {
   const {label, selected, onClick, ...delegated} = props
 
   return (
-    <Button
-      role='tab'
-      aria-selected={selected}
-      onClick={onClick}
-      {...delegated}
-      type='button'
-      tabIndex={-1}
-      ref={ref}
-    >
+    <Button type='button' role='tab' onClick={onClick} ref={ref} {...delegated}>
       <Label>{label}</Label>
     </Button>
   )
