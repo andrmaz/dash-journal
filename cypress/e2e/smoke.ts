@@ -21,7 +21,7 @@ describe('smoke tests', () => {
     cy.findByRole('button', {name: /create account/i}).click()
 
     cy.wait(1000)
-    cy.findByRole('link', {name: /logout/i})
+    cy.findByRole('button', {name: /logout/i})
   })
 
   it('should allow you to add a new client', () => {
