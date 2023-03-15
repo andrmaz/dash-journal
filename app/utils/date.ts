@@ -60,7 +60,9 @@ export function formatDateTime(date?: Date | string) {
  * @param  {string} time
  * @returns string
  */
-function format24Hour(time: string): string {
+export function format24Hour(time: string): string {
+  const invalid = time.length === 0 || time.length > 2
+  if (invalid) throw new Error(`Invalid time provided: ${time}`)
   return time.length === 1 ? `0${time}` : time
 }
 
@@ -78,5 +80,5 @@ export const localizer = dateFnsLocalizer({
   },
 })
 
-const future = new Date(new Date().setFullYear(3000))
+const future = new Date(new Date().setFullYear(new Date().getFullYear() + 1))
 const past = new Date(0)

@@ -14,7 +14,7 @@ interface LayoutProps {
 
 export const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
   const location = useLocation()
-  const title = routes.get(location.pathname) || 'Detail'
+  const title = routes.get(location.pathname) || ''
 
   return (
     <Wrapper>
