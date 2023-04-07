@@ -6,10 +6,11 @@ import {useLoaderData, useSearchParams} from '@remix-run/react'
 import type {LoaderFunction} from '@remix-run/server-runtime'
 import {Tablist} from '~/components/TabList'
 import {addTabpanelProps} from '~/utils/a11y'
-import {getIntervalDateRange} from '~/utils/date'
+import {calculateDuration, getIntervalDateRange} from '~/utils/date'
 import {getIntervalMeetings} from '~/models/meeting.server'
 import {getUserId} from '~/session.server'
 import styled from 'styled-components'
+import {Timeline} from '~/components/Timeline/Timeline'
 
 export type Interval = 'remaining' | 'ongoing' | 'completed'
 type LoaderData = {
@@ -40,24 +41,30 @@ export default function Dashboard() {
     setSearchParams({interval: labels[tab]})
   }, [tab, setSearchParams])
 
-  const props = {labels, tab, setTab}
+  const data = React.useMemo(
+    () =>
+      loader.meetings.map(meeting => ({
+        ...meeting,
+        time: calculateDuration(meeting.end, meeting.start),
+      })),
+    [loader.meetings]
+  )
 
   return (
     <Wrapper>
       <Header>
         <Title>{labels[tab]} Meetings</Title>
-        <Tablist {...props} />
+        <Tablist {...{labels, tab, setTab}} />
       </Header>
-      <ul {...addTabpanelProps(tab)}>
-        {loader.meetings.map(meeting => (
-          <li key={meeting.id}>{meeting.title}</li>
-        ))}
-      </ul>
+      <Content {...addTabpanelProps(tab)}>
+        <Timeline data={data} polarKey='title' legend='Time' radarKey='time' />
+      </Content>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
+  height: 100%;
   padding: ${p => p.theme.spacing(3)};
 `
 const Header = styled.header`
@@ -67,4 +74,8 @@ const Header = styled.header`
 `
 const Title = styled.h3`
   text-transform: capitalize;
+`
+const Content = styled.div`
+  width: 100%;
+  height: 400px;
 `
