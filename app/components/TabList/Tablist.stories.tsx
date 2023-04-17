@@ -1,4 +1,4 @@
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {userEvent, waitFor, within} from '@storybook/testing-library'
 
 import React from 'react'
@@ -9,9 +9,9 @@ export default {
   title: 'Base/Tablist',
   component: Tablist,
   argTypes: {},
-} as ComponentMeta<typeof Tablist>
+} as Meta<typeof Tablist>
 
-const Template: ComponentStory<typeof Tablist> = args => {
+const Template: StoryFn<typeof Tablist> = args => {
   const [selected, setSelected] = React.useState(0)
   const props = {selected, setSelected}
   return <Tablist {...args} {...props} />

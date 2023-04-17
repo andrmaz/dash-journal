@@ -1,4 +1,4 @@
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {userEvent, waitFor, within} from '@storybook/testing-library'
 
 import {Accordion} from './'
@@ -9,11 +9,9 @@ export default {
   title: 'Base/Accordion',
   component: Accordion,
   argTypes: {},
-} as ComponentMeta<typeof Accordion>
+} as Meta<typeof Accordion>
 
-const Template: ComponentStory<typeof Accordion> = args => (
-  <Accordion {...args} />
-)
+const Template: StoryFn<typeof Accordion> = args => <Accordion {...args} />
 
 export const Base = Template.bind({})
 Base.args = {

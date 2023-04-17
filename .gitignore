@@ -10,3 +10,4 @@ node_modules
 /prisma/data.db-journal
 
 */__a11y__
+/storybook-static
