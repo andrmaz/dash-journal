@@ -10,7 +10,7 @@ import {calculateDuration, getIntervalDateRange} from '~/utils/date'
 import {getIntervalMeetings} from '~/models/meeting.server'
 import {getUserId} from '~/session.server'
 import styled from 'styled-components'
-import {Timeline} from '~/components/Timeline/Timeline'
+import {TimeTracker} from '~/components/TimeTracker'
 
 export type Interval = 'remaining' | 'ongoing' | 'completed'
 type LoaderData = {
@@ -57,7 +57,12 @@ export default function Dashboard() {
         <Tablist {...{labels, tab, setTab}} />
       </Header>
       <Content {...addTabpanelProps(tab)}>
-        <Timeline data={data} polarKey='title' legend='Time' radarKey='time' />
+        <TimeTracker
+          data={data}
+          polarKey='title'
+          legend='Time (h)'
+          radarKey='time'
+        />
       </Content>
     </Wrapper>
   )

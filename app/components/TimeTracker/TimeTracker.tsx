@@ -10,14 +10,14 @@ import {
 } from 'recharts'
 import type {DataKey} from 'recharts/types/util/types'
 
-interface TimelineProps<T> {
+interface TimeTrackerProps<T> {
   data: T[]
   legend: string
   polarKey: DataKey<T>
   radarKey: DataKey<T>
 }
 
-export function Timeline<T>(props: TimelineProps<T>): JSX.Element {
+export function TimeTracker<T>(props: TimeTrackerProps<T>): JSX.Element {
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <RadarChart cx='50%' cy='50%' outerRadius='80%' data={props.data}>
@@ -30,6 +30,7 @@ export function Timeline<T>(props: TimelineProps<T>): JSX.Element {
           stroke='#8884d8'
           fill='#8884d8'
           fillOpacity={0.6}
+          data-testid='radar'
         />
         <Legend />
       </RadarChart>
