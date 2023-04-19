@@ -1,4 +1,4 @@
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {screen, userEvent} from '@storybook/testing-library'
 
 import Modal from './'
@@ -9,9 +9,9 @@ export default {
   title: 'Base/Modal',
   component: Modal,
   argTypes: {},
-} as ComponentMeta<typeof Modal>
+} as Meta<typeof Modal>
 
-const Template: ComponentStory<typeof Modal> = args => <Modal {...args} />
+const Template: StoryFn<typeof Modal> = args => <Modal {...args} />
 
 export const Hidden = Template.bind({})
 Hidden.args = {

@@ -1,4 +1,4 @@
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 
 import React from 'react'
 import {Stack} from './'
@@ -7,9 +7,9 @@ export default {
   title: 'Base/Stack',
   component: Stack,
   argTypes: {},
-} as ComponentMeta<typeof Stack>
+} as Meta<typeof Stack>
 
-const Template: ComponentStory<typeof Stack> = args => <Stack {...args} />
+const Template: StoryFn<typeof Stack> = args => <Stack {...args} />
 
 export const Text = Template.bind({})
 Text.args = {

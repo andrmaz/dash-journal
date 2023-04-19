@@ -1,4 +1,4 @@
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 
 import React from 'react'
 import {Slot} from './'
@@ -9,9 +9,9 @@ export default {
   title: 'Base/Slot',
   component: Slot,
   argTypes: {},
-} as ComponentMeta<typeof Slot>
+} as Meta<typeof Slot>
 
-const Template: ComponentStory<typeof Slot> = args => <Slot {...args} />
+const Template: StoryFn<typeof Slot> = args => <Slot {...args} />
 
 const date = new Date()
 export const Base = Template.bind({})

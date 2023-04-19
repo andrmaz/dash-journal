@@ -1,6 +1,6 @@
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 
 import {Calendar} from './'
 import React from 'react'
@@ -9,9 +9,9 @@ export default {
   title: 'Base/Calendar',
   component: Calendar,
   argTypes: {},
-} as ComponentMeta<typeof Calendar>
+} as Meta<typeof Calendar>
 
-const Template: ComponentStory<typeof Calendar> = args => <Calendar {...args} />
+const Template: StoryFn<typeof Calendar> = args => <Calendar {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
