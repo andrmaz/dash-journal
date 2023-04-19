@@ -1,4 +1,4 @@
-import type {ComponentMeta, ComponentStory} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 
 import React from 'react'
 import {Tab} from './'
@@ -9,9 +9,9 @@ export default {
   title: 'Base/Tab',
   component: Tab,
   argTypes: {},
-} as ComponentMeta<typeof Tab>
+} as Meta<typeof Tab>
 
-const Template: ComponentStory<typeof Tab> = args => <Tab {...args} />
+const Template: StoryFn<typeof Tab> = args => <Tab {...args} />
 
 const label = 'label'
 export const Base = Template.bind({})
