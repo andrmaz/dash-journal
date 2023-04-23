@@ -50,7 +50,10 @@ export default function Customer() {
   const disabled = transition.state === 'submitting'
 
   const customer = React.useMemo(
-    () => loader.projects[0].client.name,
+    () =>
+      loader.projects.length
+        ? loader.projects[0].client.name
+        : 'No projects yet',
     [loader.projects]
   )
 
