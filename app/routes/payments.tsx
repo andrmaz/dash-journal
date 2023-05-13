@@ -1,29 +1,31 @@
 import * as React from 'react'
 
-import {json, redirect} from '@remix-run/server-runtime'
+import {redirect} from '@remix-run/server-runtime'
 
-import type {LoaderFunction} from '@remix-run/server-runtime'
 import {getProjectList} from '~/models/project.server'
 import {getUserId} from '~/session.server'
-import styled from 'styled-components'
-import {useLoaderData} from '@remix-run/react'
+
+import type {LoaderArgs} from '@remix-run/node'
+import {typedjson, useTypedLoaderData} from 'remix-typedjson'
+
+import * as styles from '~/styles/payments.css'
 
 type LoaderData = {
   projects: Awaited<ReturnType<typeof getProjectList>>
 }
 
-export const loader: LoaderFunction = async args => {
+export const loader = async (args: LoaderArgs) => {
   const userId = await getUserId(args.request)
   if (!userId) return redirect('/login')
   const projects = await getProjectList()
-  return json<LoaderData>({projects})
+  return typedjson<LoaderData>({projects})
 }
 
 export default function Payments() {
-  const loader = useLoaderData<LoaderData>()
+  const loader = useTypedLoaderData<LoaderData>()
 
   return (
-    <Wrapper>
+    <section className={styles.wrapper}>
       {loader.projects.map(project => (
         <article key={project.id}>
           <h3>Client: {project.client.name}</h3>
@@ -33,10 +35,6 @@ export default function Payments() {
           <p>Last invoice status: PAID - Due date: December 15, 2022</p>
         </article>
       ))}
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  padding: ${p => p.theme.spacing(3)};
-`

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import type {Client} from '@prisma/client'
 import {Form} from '@remix-run/react'
-import styled from 'styled-components'
+import * as styles from './customer-list.css'
 
 interface CustomerListProps<T> {
   title: string
@@ -18,7 +18,7 @@ export function CustomerList<T extends Client>(props: CustomerListProps<T>) {
       {props.loading ? (
         <>Loading ...</>
       ) : (
-        <List>
+        <ul className={styles.list}>
           {props.list.map(client => {
             const to = `/profile/customers/${client.id}`
             return (
@@ -26,26 +26,20 @@ export function CustomerList<T extends Client>(props: CustomerListProps<T>) {
                 <a href={to}>{client.name}</a>
                 <Form method='post' action={to} style={{display: 'inline'}}>
                   <input type='hidden' name='id' value={client.id} />
-                  <Button
+                  <button
                     type='submit'
                     aria-label='delete'
                     disabled={props.disabled}
+                    className={styles.button}
                   >
                     &#88;
-                  </Button>
+                  </button>
                 </Form>
               </li>
             )
           })}
-        </List>
+        </ul>
       )}
     </section>
   )
 }
-
-const List = styled.ul`
-  list-style: inside circle;
-`
-const Button = styled.button`
-  margin-left: 0.3em;
-`

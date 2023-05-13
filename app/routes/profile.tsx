@@ -1,17 +1,13 @@
 import {Breadcrumb} from '~/components/Breadcrumb'
 import {Outlet} from '@remix-run/react'
 import {links} from '~/data'
-import styled from 'styled-components'
+import * as styles from '~/styles/profile.css'
 
 export default function Profile() {
   return (
-    <Wrapper>
+    <section className={styles.wrapper}>
       <Breadcrumb links={links.profile} />
       <Outlet />
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  padding: ${p => p.theme.spacing(3)};
-`

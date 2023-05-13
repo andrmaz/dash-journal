@@ -1,32 +1,32 @@
-import * as React from 'react'
-
 import {calculateDuration, formatDateMeeting} from '~/utils/date'
-import {json, redirect} from '@remix-run/server-runtime'
+import {redirect} from '@remix-run/server-runtime'
 
-import type {LoaderFunction} from '@remix-run/server-runtime'
 import {getMeetingList} from '~/models/meeting.server'
 import {getUserId} from '~/session.server'
-import styled from 'styled-components'
-import {useLoaderData} from '@remix-run/react'
+
+import type {LoaderArgs} from '@remix-run/node'
+import {typedjson, useTypedLoaderData} from 'remix-typedjson'
+
+import * as styles from '~/styles/statistics.css'
 
 type LoaderData = {
   meetings: Awaited<ReturnType<typeof getMeetingList>>
 }
 
-export const loader: LoaderFunction = async args => {
+export const loader = async (args: LoaderArgs) => {
   const userId = await getUserId(args.request)
   if (!userId) return redirect('/login')
   const meetings = await getMeetingList()
-  return json<LoaderData>({meetings})
+  return typedjson<LoaderData>({meetings})
 }
 
 export default function Statistics() {
-  const loader = useLoaderData<LoaderData>()
+  const loader = useTypedLoaderData<LoaderData>()
 
   return (
-    <Wrapper>
+    <section className={styles.wrapper}>
       {loader.meetings.map(meeting => (
-        <Item key={meeting.id}>
+        <article className={styles.item} key={meeting.id}>
           <h4>
             {meeting.project.name} - {meeting.client.name}
           </h4>
@@ -36,15 +36,8 @@ export default function Statistics() {
           <p>
             Time spent: {calculateDuration(meeting.end, meeting.start)} hours
           </p>
-        </Item>
+        </article>
       ))}
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  padding: ${p => p.theme.spacing(3)};
-`
-const Item = styled.article`
-  margin-bottom: ${p => p.theme.spacing(3)};
-`

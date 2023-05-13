@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import type {ActionFunction, LoaderFunction} from '@remix-run/server-runtime'
-import {useLoaderData, useParams, useTransition} from '@remix-run/react'
+import type {ActionFunction} from '@remix-run/server-runtime'
+import {useParams, useTransition} from '@remix-run/react'
 
 import {Accordion} from '~/components/Accordion'
 import {Path} from '~/data'
@@ -11,17 +11,21 @@ import {deleteClient} from '~/models/client.server'
 import {getClientProjects} from '~/models/project.server'
 import {json} from '@remix-run/server-runtime'
 import {redirect} from '@remix-run/server-runtime'
-import styled from 'styled-components'
+
+import type {LoaderArgs} from '@remix-run/node'
+import {typedjson, useTypedLoaderData} from 'remix-typedjson'
+
+import * as styles from '~/styles/customer-id.css'
 
 type LoaderData = {
   projects: Awaited<ReturnType<typeof getClientProjects>>
 }
 
-export const loader: LoaderFunction = async args => {
+export const loader = async (args: LoaderArgs) => {
   const id = args.params.customerId
   if (!id) return redirect(Path.Clients)
   const projects = await getClientProjects(id)
-  return json<LoaderData>({projects})
+  return typedjson<LoaderData>({projects})
 }
 
 interface ActionData {
@@ -44,7 +48,7 @@ export const action: ActionFunction = async args => {
 
 export default function Customer() {
   const params = useParams()
-  const loader = useLoaderData<LoaderData>()
+  const loader = useTypedLoaderData<LoaderData>()
 
   const transition = useTransition()
   const disabled = transition.state === 'submitting'
@@ -58,15 +62,11 @@ export default function Customer() {
   )
 
   return (
-    <Wrapper>
+    <section className={styles.wrapper}>
       <ProjectList title={customer} list={loader.projects} />
       <Accordion title='add a new project'>
         <Project id={params.customerId!} disabled={disabled} />
       </Accordion>
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  width: 50%;
-`

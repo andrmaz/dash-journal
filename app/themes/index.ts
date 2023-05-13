@@ -1,8 +1,6 @@
-import type {Alpha, DefaultTheme} from 'styled-components'
-
 import {formatFactor} from '~/utils/theme'
 
-const opacity: Record<Alpha, number> = {
+const opacity: Record<string, number> = {
   '300': 0.3,
   '500': 0.5,
   '700': 0.7,
@@ -12,7 +10,7 @@ const opacity: Record<Alpha, number> = {
 const createColorPallet = (
   color: Color,
   alpha: Array<keyof typeof opacity>
-): Record<Alpha, string> =>
+): Record<string, string> =>
   Object.assign(
     {},
     ...alpha.map(a => ({
@@ -38,10 +36,10 @@ enum Breakpoints {
   laptop = 1300,
 }
 
-const alphas = Object.keys(opacity) as Alpha[]
+const alphas = Object.keys(opacity) as string[]
 
-const theme: DefaultTheme = {
-  spacing: factor => formatFactor(factor),
+const theme = {
+  spacing: (factor: number) => formatFactor(factor),
   colors: {
     white: `hsla(${Color.white}, ${opacity['1000']})`,
     black: `hsla(${Color.black}, ${opacity['1000']})`,

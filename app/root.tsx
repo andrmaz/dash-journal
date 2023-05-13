@@ -5,23 +5,22 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from '@remix-run/react'
-import type {LinksFunction, LoaderFunction, MetaFunction} from '@remix-run/node'
+import type {LinksFunction, LoaderArgs, MetaFunction} from '@remix-run/node'
 
-import {GlobalStyle} from './styles'
-import {Layout} from './composer/Layout'
-import {ThemeProvider} from 'styled-components'
+import {Layout} from './composer/Layout/Layout'
 import {getUser} from '~/session.server'
-import {json} from '@remix-run/node'
-import {theme} from './themes'
+import {cssBundleHref} from '@remix-run/css-bundle'
+import {typedjson, useTypedLoaderData} from 'remix-typedjson'
+import 'global-css'
 
 type LoaderData = {
   user: Awaited<ReturnType<typeof getUser>>
 }
 
-export const loader: LoaderFunction = async ({request}) => {
-  return json<LoaderData>({user: await getUser(request)})
+export const loader = async (args: LoaderArgs) => {
+  const user = await getUser(args.request)
+  return typedjson<LoaderData>({user})
 }
 
 export const meta: MetaFunction = () => ({
@@ -32,6 +31,7 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => {
   return [
+    ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : []),
     {
       rel: 'stylesheet',
       href: 'https://cdn.jsdelivr.net/npm/react-big-calendar@0.19.0/lib/css/react-big-calendar.css',
@@ -40,29 +40,24 @@ export const links: LinksFunction = () => {
 }
 
 export default function App() {
-  const data = useLoaderData<LoaderData>()
-  const user = data.user
+  const data = useTypedLoaderData<typeof loader>()
 
   return (
     <html lang='en'>
       <head>
         <Meta />
         <Links />
-        {typeof document === 'undefined' ? '__STYLES__' : null}
       </head>
       <body>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <div id='root'>
-            {user ? (
-              <Layout user={user}>
-                <Outlet />
-              </Layout>
-            ) : (
+        <div id='root'>
+          {data.user ? (
+            <Layout user={data.user}>
               <Outlet />
-            )}
-          </div>
-        </ThemeProvider>
+            </Layout>
+          ) : (
+            <Outlet />
+          )}
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

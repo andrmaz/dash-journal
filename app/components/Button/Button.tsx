@@ -1,5 +1,5 @@
 import type {ComponentPropsWithoutRef} from 'react'
-import styled from 'styled-components'
+import * as styles from './button.css'
 
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   /**
@@ -61,24 +61,15 @@ export const Button = ({
   const mode = primary ? 'primary' : 'secondary'
   const action = MODES[mode]
   const dimension = SIZES[size]
-  const styles = {...action, ...dimension, backgroundColor}
+  const style = {...action, ...dimension, backgroundColor}
   return (
-    <Base type='button' style={styles} className={className} {...delegated}>
+    <button
+      type='button'
+      className={styles.button + className}
+      style={style}
+      {...delegated}
+    >
       {children}
-    </Base>
+    </button>
   )
 }
-
-const Base = styled.button`
-  background-color: var(--background);
-  border: 0;
-  border-radius: var(--border-radius-xx-large);
-  box-shadow: var(--shadow);
-  color: var(--color);
-  cursor: pointer;
-  display: inline-block;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size);
-  line-height: var(--font-height-normal);
-  padding: var(--padding);
-`

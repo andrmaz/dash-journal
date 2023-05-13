@@ -1,9 +1,11 @@
 {
-    "editor.fontFamily": "",
-    "cSpell.words": [
-        "cormorantinfant",
-        "docgen",
-        "Tablist",
-        "typecheck"
-    ]
+  "editor.fontFamily": "",
+  "cSpell.words": [
+    "cormorantinfant",
+    "docgen",
+    "Tablist",
+    "typecheck",
+    "typedjson"
+  ],
+  "editor.guides.bracketPairs": "active"
 }

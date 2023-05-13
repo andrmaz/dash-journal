@@ -1,31 +1,34 @@
-import {json, redirect} from '@remix-run/server-runtime'
-import {useLoaderData, useTransition} from '@remix-run/react'
+import {redirect} from '@remix-run/server-runtime'
+import {useTransition} from '@remix-run/react'
 
-import type {LoaderFunction} from '@remix-run/server-runtime'
 import {formatDateUser} from '~/utils/date'
 import {getUserById} from '~/models/user.server'
 import {getUserId} from '~/session.server'
-import styled from 'styled-components'
+
+import type {LoaderArgs} from '@remix-run/node'
+import {typedjson, useTypedLoaderData} from 'remix-typedjson'
+
+import * as styles from '~/styles/overview.css'
 
 type LoaderData = {
   user: Awaited<ReturnType<typeof getUserById>>
 }
 
-export const loader: LoaderFunction = async args => {
+export const loader = async (args: LoaderArgs) => {
   const userId = await getUserId(args.request)
   if (!userId) return redirect('/login')
   const user = await getUserById(userId)
-  return json<LoaderData>({user})
+  return typedjson<LoaderData>({user})
 }
 
 export default function Overview() {
-  const loader = useLoaderData<LoaderData>()
+  const loader = useTypedLoaderData<LoaderData>()
 
   const transition = useTransition()
   const loading = transition.state === 'loading'
 
   return (
-    <Wrapper>
+    <section className={styles.wrapper}>
       <div>
         <h3>Some details</h3>
         {loading ? (
@@ -37,12 +40,6 @@ export default function Overview() {
           </>
         )}
       </div>
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  display: flex;
-  justify-content: space-between;
-  padding: ${p => p.theme.spacing(3)};
-`
