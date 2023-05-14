@@ -1,8 +1,15 @@
 import {style} from '@vanilla-extract/css'
+import {sprinkles} from '~/themes/sprinkles.css'
 
+/* export const wrapper = sprinkles({
+  padding: 'medium',
+}) */
 export const wrapper = style({
-  padding: '12px',
+  padding: 'var(--space-medium)',
 })
+/* export const item = sprinkles({
+  marginBottom: 'medium',
+}) */
 export const item = style({
-  marginBottom: '12px',
+  marginBottom: 'var(--space-medium)',
 })

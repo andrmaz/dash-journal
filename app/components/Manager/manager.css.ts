@@ -1,4 +1,5 @@
 import {style} from '@vanilla-extract/css'
+import {sprinkles} from '~/themes/sprinkles.css'
 
 export const wrapper = style({
   height: '100%',
@@ -10,6 +11,9 @@ export const header = style({
   display: 'flex',
   justifyContent: 'space-between',
 })
+/* export const title = sprinkles({
+  marginBottom: 'medium',
+}) */
 export const title = style({
-  marginBottom: '12px',
+  marginBottom: 'var(--space-medium)',
 })

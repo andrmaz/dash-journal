@@ -1,23 +1,42 @@
 import {style} from '@vanilla-extract/css'
+import {sprinkles} from '~/themes/sprinkles.css'
 
-export const wrapper = style({
-  padding: '0.8em 1em',
-  border: '1px solid gray' /* ${p => p.theme.colors.gray['700']} */,
-  borderRadius: 'var(--border-radius-medium)',
-  backgroundColor: 'gray' /* ${p => p.theme.colors.gray['300']} */,
-  /* selectors: {
+export const wrapper = style([
+  {
+    padding: '0.8em 1em',
+    border: '1px solid',
+    /* selectors: {
     'aria-current=page': {
       color: 'var(--color-dark)',
       fontWeight: 'var(--font-weight-bold)',
       textDecoration: 'none',
     },
   }, */
-})
-export const list = style({
-  margin: 0,
-  paddingLeft: 0,
-  listStyle: 'none',
-})
+  },
+  /* sprinkles({
+    backgroundColor: 'backdrop',
+    borderColor: 'gray-700',
+    borderRadius: 'medium',
+  }), */
+  {
+    backgroundColor: 'var(--color-backdrop)',
+    borderColor: 'var(--color-backdrop)',
+    borderRadius: 'var(--space-medium)',
+  },
+])
+export const list = style([
+  {
+    listStyle: 'none',
+  },
+  /* sprinkles({
+    margin: 'none',
+    paddingLeft: 'none',
+  }), */
+  {
+    margin: 0,
+    paddingLeft: 0,
+  },
+])
 export const item = style({
   display: 'inline',
   textTransform: 'capitalize',

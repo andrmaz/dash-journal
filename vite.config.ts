@@ -15,8 +15,9 @@ const config: UserConfigExport = defineConfig({
   ],
   resolve: {
     alias: {
-      'test-utils': path.resolve(__dirname, './test/test-utils.tsx'),
       '~/*': path.resolve(__dirname, './app/*'),
+      'test-utils': path.resolve(__dirname, './test/test-utils.tsx'),
+      'global-css': path.resolve(__dirname, './app/styles/global.css.ts'),
     },
   },
 })

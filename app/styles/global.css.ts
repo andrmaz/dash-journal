@@ -120,10 +120,17 @@ globalStyle('html, body', {
   /* Set the viewport height on both mobile and desktop. */
   height: '100%',
   vars: {
+    '--space-small': '4px',
+    '--space-medium': '12px',
+    '--space-large': '16px',
+    '--space-x-large': '32px',
+
     '--color-base': 'hsla(0, 0%, 100%, 1)',
     '--color-dark': 'hsla(0.44,	0.22%, 0.10%, 1)',
     '--color-primary': 'hsla(359, 38%, 65%, 1)',
     '--color-secondary': 'hsla(353, 52%, 90%, 1)',
+    '--color-tertiary': 'hsla(16, 23%, 62%, 1)',
+    '--color-quaternary': 'hsla(340, 27%, 36%, 1)',
     '--color-background': 'hsla(0, 0%, 100%, 1)',
     '--color-foreground': 'hsla(0.44,	0.22%, 0.10%, 1)',
     '--color-backdrop': 'hsla(220, 5%, 40%, 0.3)',

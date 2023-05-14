@@ -1,29 +1,48 @@
 import {style} from '@vanilla-extract/css'
+import {sprinkles} from '~/themes/sprinkles.css'
 
-export const wrapper = style({
-  vars: {
-    '--width': '10rem',
+export const wrapper = style([
+  {
+    vars: {
+      '--width': '10rem',
+    },
+    alignItems: 'center',
+    boxShadow: 'var(--shadow)',
+    border: 'var(--border)',
+    color: 'var(--color)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    height: '3.5rem',
+    placeContent: 'center',
+    width: 'var(--width)',
   },
-  height: '3.5rem',
-  display: 'grid',
-  placeContent: 'center',
-  alignItems: 'center',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  width: 'var(--width)',
-  padding: '8px',
-  backgroundColor: 'var(--background)',
-  color: 'var(--color)',
-  border: 'var(--border)',
-  borderRadius: 'var(--border-radius-medium)',
-  boxShadow: 'var(--shadow)',
-})
-export const label = style({
-  fontSize: 'var(--font-size-small)',
-  textTransform: 'capitalize',
-  letterSpacing: 'var(--font-spacing-normal)',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  width: 'calc(var(--width) * 0.66)',
-  marginLeft: '8px',
-})
+  /* sprinkles({
+    backgroundColor: 'background',
+    borderRadius: 'medium',
+    padding: 'medium',
+  }), */
+  {
+    backgroundColor: 'var(--color-background)',
+    borderRadius: 'var(--border-radius-medium)',
+    padding: 'var(--space-medium)',
+  },
+])
+export const label = style([
+  {
+    textTransform: 'capitalize',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    width: 'calc(var(--width) * 0.66)',
+  },
+  /* sprinkles({
+    fontSize: 'small',
+    letterSpacing: 'normal',
+    marginLeft: 'medium',
+  }), */
+  {
+    fontSize: 'var(--font-size-small)',
+    letterSpacing: 'var(--font-spacing-normal)',
+    marginLeft: 'var(--space-medium)',
+  },
+])
