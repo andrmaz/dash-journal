@@ -1,5 +1,5 @@
-import * as React from 'react'
-import {theme} from '../app/themes'
+import React from 'react'
+import '../app/styles/global.css'
 
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},
@@ -11,10 +11,4 @@ export const parameters = {
   },
 }
 
-export const decorators = [
-  Story => (
-    <>
-      <Story />
-    </>
-  ),
-]
+export const decorators = [Story => <Story />]
