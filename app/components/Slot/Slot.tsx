@@ -1,24 +1,13 @@
 import type {EventProps} from 'react-big-calendar'
-import React from 'react'
+import * as React from 'react'
 import {formatDateEvent} from '~/utils/date'
-import styled from 'styled-components'
+import * as styles from './slot.css'
 
 export const Slot = (props: EventProps) => {
   return (
-    <Wrapper>
-      <Title>{props.event.title}</Title>
-      <Date>{formatDateEvent(props.event.start)}</Date>
-    </Wrapper>
+    <div className={styles.wrapper}>
+      <span className={styles.title}>{props.event.title}</span>
+      <span className={styles.date}>{formatDateEvent(props.event.start)}</span>
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-const Title = styled.span`
-  font-size: var(--font-size-small);
-`
-const Date = styled.span`
-  font-size: var(--font-size-small);
-`

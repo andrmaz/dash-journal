@@ -6,7 +6,7 @@ import {Calendar as ReactBigCalendar} from 'react-big-calendar'
 import {Slot} from '../Slot'
 import type {SlotInfo} from 'react-big-calendar'
 import {localizer} from '~/utils/date'
-import styled from 'styled-components'
+import * as styles from './calendar.css'
 
 interface CalendarProps {
   events: Meeting[]
@@ -35,7 +35,7 @@ export const Calendar = (props: CalendarProps) => {
   }
 
   return (
-    <Wrapper>
+    <section className={styles.wrapper}>
       <EventModal
         isOpen={isOpen}
         onDismiss={onDismiss}
@@ -54,13 +54,6 @@ export const Calendar = (props: CalendarProps) => {
         onSelectEvent={onSelectEvent}
         views={['month']}
       />
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  width: 100%;
-  height: ${p => p.theme.spacing(120)};
-  display: grid;
-  place-items: center;
-`

@@ -33,8 +33,9 @@ const config: StorybookConfig = {
       // Use the same "resolve" configuration as your app
       resolve: {
         alias: {
-          'test-utils': path.resolve(__dirname, './test/test-utils.tsx'),
           '~/*': path.resolve(__dirname, './app/*'),
+          'test-utils': path.resolve(__dirname, './test/test-utils.tsx'),
+          'global-css': ['./app/styles/global.css.ts'],
         },
       },
       // Add dependencies to pre-optimization

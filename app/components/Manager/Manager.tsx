@@ -1,11 +1,12 @@
 import type {Meeting} from '@prisma/client'
-import React from 'react'
+import * as React from 'react'
 import {formatDateMeeting} from '~/utils/date'
-import styled from 'styled-components'
-import {useFetcher} from '@remix-run/react'
+
+import {useTypedFetcher} from 'remix-typedjson'
+import * as styles from './manager.css'
 
 export const Manager = () => {
-  const fetcher = useFetcher<Meeting>()
+  const fetcher = useTypedFetcher<Meeting>()
   const isLoading = fetcher.state === 'loading'
 
   React.useEffect(() => {
@@ -16,10 +17,10 @@ export const Manager = () => {
 
   if (isLoading) return <>Loading ...</>
   return (
-    <Wrapper>
-      <Header>
-        <Title>Client meeting</Title>
-      </Header>
+    <section className={styles.wrapper}>
+      <header className={styles.header}>
+        <h3 className={styles.title}>Client meeting</h3>
+      </header>
       {fetcher.data ? (
         <p>
           Your next meeting "{fetcher.data.title}" will start on{' '}
@@ -28,20 +29,6 @@ export const Manager = () => {
       ) : (
         <p>No meeting planned yet.</p>
       )}
-    </Wrapper>
+    </section>
   )
 }
-
-const Wrapper = styled.section`
-  height: 100%;
-  width: 100%;
-  position: relative;
-  padding: ${p => p.theme.spacing([3, 9])};
-`
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-`
-const Title = styled.h3`
-  margin-bottom: ${p => p.theme.spacing(3)};
-`

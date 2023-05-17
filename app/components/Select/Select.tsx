@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import type {Client, Project} from '@prisma/client'
 
-import {useFetcher} from '@remix-run/react'
+import {useTypedFetcher} from 'remix-typedjson'
 
 interface SelectProps {
   defaultValue?: string
@@ -11,7 +11,7 @@ interface SelectProps {
 }
 
 export const SelectClients = (props: SelectProps) => {
-  const fetcher = useFetcher<Client[]>()
+  const fetcher = useTypedFetcher<Client[]>()
 
   React.useEffect(() => {
     if (fetcher.type === 'init') {
@@ -50,7 +50,7 @@ export const SelectClients = (props: SelectProps) => {
 }
 
 export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
-  const fetcher = useFetcher<Project[]>()
+  const fetcher = useTypedFetcher<Project[]>()
 
   const [value, setValue] = React.useState<Project['id']>('')
 
