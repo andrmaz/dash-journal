@@ -94,7 +94,7 @@
     "prettier": "2.8.4",
     "prisma": "^3.14.0",
     "start-server-and-test": "^1.15.5",
-    "storybook": "^7.0.12",
+    "storybook": "^7.0.18",
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^4.1.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
