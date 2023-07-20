@@ -83,10 +83,7 @@ export const Event = (props: EventProps) => {
           onChange={event => setClient(event.target.value)}
         />
 
-        <SelectProjects
-          defaultValue={event?.projectId}
-          value={event?.clientId || client}
-        />
+        <SelectProjects defaultValue={event?.projectId} value={client} />
 
         <input type='submit' value='Submit' />
       </fieldset>

@@ -1,4 +1,4 @@
-import {style} from '@vanilla-extract/css'
+import {style, styleVariants} from '@vanilla-extract/css'
 import {sprinkles} from '~/themes/sprinkles.css'
 
 export const wrapper = style([
@@ -46,3 +46,29 @@ export const label = style([
     marginLeft: 'var(--space-medium)',
   },
 ])
+export const variants = styleVariants({
+  text: {
+    color: 'var(--color-foreground)',
+    backgroundColor: 'var(--color-background)',
+    border: 0,
+    boxShadow: 'var(--shadow-x-large)',
+  },
+  contained: {
+    color: 'var(--color-foreground)',
+    backgroundColor: 'var(--color-primary)',
+    border: '0',
+    boxShadow: 'var(--shadow-x-large)',
+  },
+  outlined: {
+    color: 'var(--color-foreground)',
+    backgroundColor: 'var(--color-background)',
+    border: '1px solid var(--color-primary)',
+    boxShadow: 'var(--shadow-outline)',
+  },
+  none: {
+    color: 'var(--color-foreground)',
+    backgroundColor: 'transparent',
+    border: 'none',
+    boxShadow: 'none',
+  },
+})
