@@ -50,7 +50,7 @@ export const SelectClients = (props: SelectProps) => {
 }
 
 export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
-  const fetcher = useTypedFetcher<Project[]>()
+  const {load, state, data} = useTypedFetcher<Project[]>()
 
   const [value, setValue] = React.useState<Project['id']>('')
 
@@ -58,14 +58,12 @@ export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
     setValue(event.target.value)
 
   React.useEffect(() => {
-    if (fetcher.type === 'init') {
+    if (props.value) {
       const params = new URLSearchParams()
-      if (props.value) {
-        params.append('clientId', props.value)
-        fetcher.load(`/projects?index&${params}`)
-      }
+      params.append('clientId', props.value)
+      load(`/projects?index&${params}`)
     }
-  }, [fetcher, props.value])
+  }, [load, props.value])
 
   return (
     <div>
@@ -77,13 +75,13 @@ export const SelectProjects = (props: Omit<SelectProps, 'onChange'>) => {
         onChange={onChange}
         required
       >
-        {fetcher.state === 'loading' ? <>Loading ...</> : null}
-        {!fetcher.data ? (
+        {state === 'loading' ? <>Loading ...</> : null}
+        {!data ? (
           <>Failed to load projects </>
-        ) : fetcher.data.length ? (
+        ) : data.length ? (
           <>
             <option value='' />
-            {fetcher.data.map(project => (
+            {data.map(project => (
               <option value={project.id} key={project.id}>
                 {project.name}
               </option>
