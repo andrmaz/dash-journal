@@ -58,7 +58,7 @@
     "@storybook/addon-mdx-gfm": "^7.0.5",
     "@storybook/jest": "0.1.0",
     "@storybook/react": "^7.0.5",
-    "@storybook/react-vite": "^7.1.1",
+    "@storybook/react-vite": "^7.3.2",
     "@storybook/test-runner": "^0.10.0",
     "@storybook/testing-library": "0.2.0",
     "@testing-library/cypress": "^8.0.7",
