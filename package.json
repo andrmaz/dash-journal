@@ -23,7 +23,7 @@
     "test-storybook:ci": "test-storybook --maxWorkers=2"
   },
   "dependencies": {
-    "@prisma/client": "^3.14.0",
+    "@prisma/client": "^5.3.1",
     "@reach/dialog": "^0.18.0",
     "@reach/visually-hidden": "^0.17.0",
     "@remix-run/css-bundle": "^1.11.0",
