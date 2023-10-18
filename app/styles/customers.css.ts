@@ -1,21 +1,13 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../themes/theme.css'
 
 export const wrapper = style([
   {
     display: 'flex',
     justifyContent: 'space-between',
-  },
-  /* sprinkles({
-    padding: 'medium',
-  }), */
-  {
-    padding: 'var(--space-medium)',
+    padding: vars.space.medium,
   },
 ])
-/* export const box = sprinkles({
-  marginTop: 'medium',
-}) */
 export const box = style({
-  marginTop: 'var(--space-medium)',
+  marginTop: vars.space.medium,
 })

@@ -1,5 +1,5 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const button = style([
   {
@@ -7,18 +7,10 @@ export const button = style([
     height: '44px',
     display: 'grid',
     placeItems: 'center',
-  },
-  /* sprinkles({
-    backgroundColor: 'background',
-    borderRadius: 'medium',
-    boxShadow: 'small',
-    padding: 'small',
-  }), */
-  {
-    backgroundColor: 'var(--color-background)',
-    borderRadius: 'var(--border-radius-medium)',
-    boxShadow: 'var(--shadow-small)',
-    padding: 'var(--space-small)',
+    backgroundColor: vars.theme.background,
+    borderRadius: vars.corner.medium,
+    boxShadow: vars.shadow.small,
+    padding: vars.space.small,
   },
 ])
 export const icon = style({

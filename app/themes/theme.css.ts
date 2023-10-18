@@ -1,7 +1,7 @@
-import {defineProperties, createSprinkles} from '@vanilla-extract/sprinkles'
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 const space = {
-  none: 0,
+  none: '0',
   small: '4px',
   medium: '8px',
   large: '16px',
@@ -60,7 +60,6 @@ const theme = {
   foreground: pallette.dark,
   backdrop: pallette['gray-300'],
 }
-const defaultTextSize = 16
 const size = {
   small: '0.875rem',
   medium: '1rem',
@@ -68,9 +67,9 @@ const size = {
   huge: '1.5rem',
 }
 const weight = {
-  normal: 500,
-  medium: 600,
-  bold: 800,
+  normal: '500',
+  medium: '600',
+  bold: '800',
 }
 const spacing = {
   dense: '-0.015em',
@@ -78,9 +77,9 @@ const spacing = {
   loose: '0.075em',
 }
 const height = {
-  dense: 1.4,
-  normal: 1.8,
-  loose: 2.2,
+  dense: '1.4',
+  normal: '1.8',
+  loose: '2.2',
 }
 const corner = {
   small: '0.125rem',
@@ -101,11 +100,11 @@ const shadow = {
   outline: `0 0 0 3px ${theme.primary}`,
 }
 const position = {
-  drawer: 700,
-  dialog: 800,
-  dropdown: 900,
-  toast: 950,
-  tooltip: 1000,
+  drawer: '700',
+  dialog: '800',
+  dropdown: '900',
+  toast: '950',
+  tooltip: '1000',
 }
 const duration = {
   short: '400ms',
@@ -113,90 +112,22 @@ const duration = {
   long: '600ms',
 }
 const breakpoints = {
-  mobile: 600,
-  tablet: 950,
-  desktop: 1300,
+  mobile: '600',
+  tablet: '950',
+  desktop: '1300',
 }
 
-const responsiveProperties = defineProperties({
-  conditions: {
-    mobile: {
-      '@media': `screen and (max-width: ${
-        breakpoints.mobile / defaultTextSize
-      }rem)`,
-    },
-    tablet: {
-      '@media': `screen and (max-width: ${
-        breakpoints.tablet / defaultTextSize
-      }rem)`,
-    },
-    desktop: {
-      '@media': `screen and (max-width: ${
-        breakpoints.desktop / defaultTextSize
-      }rem)`,
-    },
-  },
-  defaultCondition: 'desktop',
-  properties: {
-    padding: space,
-    paddingTop: space,
-    paddingRight: space,
-    paddingBottom: space,
-    paddingLeft: space,
-    margin: space,
-    marginTop: space,
-    marginRight: space,
-    marginBottom: space,
-    marginLeft: space,
-    gap: space,
-  },
-})
-
-const colorProperties = defineProperties({
-  conditions: {
-    light: {
-      '@media': '(prefers-color-scheme: light)',
-    },
-    dark: {'@media': '(prefers-color-scheme: dark)'},
-  },
-  defaultCondition: 'light',
-  properties: {
-    color: theme,
-    backgroundColor: theme,
-    borderColor: pallette,
-  },
-})
-
-const unconditionalProperties = defineProperties({
-  properties: {
-    fontSize: size,
-    fontWeight: weight,
-    letterSpacing: spacing,
-    lineHeight: height,
-    borderRadius: corner,
-    boxShadow: shadow,
-    zIndex: position,
-  },
-})
-
-const motionProperties = defineProperties({
-  conditions: {
-    enabled: {'@media': '(prefers-reduced-motion: no-preference)'},
-    disabled: {'@media': '(prefers-reduced-motion: reduce)'},
-  },
-  defaultCondition: 'disabled',
-  properties: {
-    transitionDuration: duration,
-    animationDuration: duration,
-    animationDelay: duration,
-  },
-})
-
-export const sprinkles = createSprinkles(
-  responsiveProperties,
-  colorProperties,
-  unconditionalProperties,
-  motionProperties
-)
-
-export type Sprinkles = Parameters<typeof sprinkles>[0]
+export const vars = createGlobalTheme('#root', {
+  space,
+  pallette,
+  theme,
+  size,
+  weight,
+  spacing,
+  height,
+  corner,
+  shadow,
+  position,
+  duration,
+  breakpoints
+});

@@ -7,7 +7,7 @@ import {getUserId} from '~/session.server'
 import type {LoaderArgs} from '@remix-run/node'
 import {typedjson, useTypedLoaderData} from 'remix-typedjson'
 
-import * as styles from '~/styles/statistics.css'
+import * as styles from '../styles/statistics.css'
 
 type LoaderData = {
   meetings: Awaited<ReturnType<typeof getMeetingList>>

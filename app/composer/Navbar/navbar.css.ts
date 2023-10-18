@@ -1,5 +1,5 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const navigation = style([
   {
@@ -8,14 +8,8 @@ export const navigation = style([
     justifyContent: 'space-between',
     height: '100%',
     width: '17.5%',
-  },
-  /* sprinkles({
-    backgroundColor: 'secondary',
-    padding: 'x-large',
-  }), */
-  {
-    backgroundColor: 'var(--color-secondary)',
-    padding: 'var(--space-x-large)',
+    backgroundColor: vars.theme.secondary,
+    padding: vars.space['x-large'],
   },
 ])
 export const list = style([
@@ -25,21 +19,13 @@ export const list = style([
     flexDirection: 'column',
     height: '60%',
     width: '100%',
-  },
-  /* sprinkles({
-    gap: 'large',
-  }), */
-  {
-    gap: 'var(--space-large)',
+    gap: vars.space.large,
   },
 ])
 export const button = style([
   {
     backgroundColor: 'transparent',
     border: 'none',
+    padding: 0
   },
-  /* sprinkles({
-    padding: 'none',
-  }), */
-  {padding: 0},
 ])

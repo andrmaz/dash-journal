@@ -1,17 +1,15 @@
-import type {UserConfigExport} from 'vite'
-import {defineConfig} from 'vite'
+import type { UserConfigExport } from 'vite'
+import { defineConfig } from 'vite'
 import path from 'path'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import {vanillaExtractPlugin} from '@vanilla-extract/vite-plugin'
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 const config: UserConfigExport = defineConfig({
   plugins: [
     react(),
     tsconfigPaths(),
-    vanillaExtractPlugin({
-      emitCssInSsr: true,
-    }),
+    vanillaExtractPlugin()
   ],
   resolve: {
     alias: {

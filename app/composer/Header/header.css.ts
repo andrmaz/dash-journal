@@ -1,5 +1,5 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const wrapper = style([
   {
@@ -11,14 +11,8 @@ export const wrapper = style([
     display: 'flex',
     justifyContent: 'space-between',
     padding: '15px 20px',
-  },
-  /* sprinkles({
-    backgroundColor: 'quaternary',
-    borderColor: 'dark',
-  }), */
-  {
-    backgroundColor: 'var(--color-quaternary)',
-    borderColor: 'var(--color-dark)',
+    backgroundColor: vars.theme.quaternary,
+    borderColor: vars.pallette.dark,
   },
 ])
 export const title = style([
@@ -27,24 +21,14 @@ export const title = style([
     margin: '6px 0 6px 10px',
     verticalAlign: 'top',
     textTransform: 'capitalize',
-  },
-  /* sprinkles({
-    fontWeight: 'bold',
-    fontSize: 'large',
-    lineHeight: 'normal',
-  }), */
-  {
-    fontWeight: 'var(--font-weight-bold)',
-    fontSize: 'var(--font-size-large)',
-    lineHeight: 'var(--font-height-normal)',
+    fontWeight: vars.weight.bold,
+    fontSize: vars.size.large,
+    lineHeight: vars.height.normal,
   },
 ])
 export const container = style([
   {
     display: 'flex',
+    gap: vars.space.large
   },
-  /* sprinkles({
-    gap: 'large',
-  }), */
-  {gap: 'var(--space-large)'},
 ])

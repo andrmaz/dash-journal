@@ -1,5 +1,6 @@
 import React from 'react'
-import '../app/styles/global.css'
+import '../app/css/global.css'
+import '../app/themes/theme.css'
 
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},
@@ -11,4 +12,10 @@ export const parameters = {
   },
 }
 
-export const decorators = [Story => <Story />]
+export const decorators = [
+  Story => (
+    <div id='root'>
+      <Story />
+    </div>
+  ),
+]

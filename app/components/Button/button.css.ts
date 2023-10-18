@@ -1,5 +1,5 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const button = style([
   {
@@ -11,15 +11,8 @@ export const button = style([
     display: 'inline-block',
     fontSize: 'var(--font-size)',
     padding: 'var(--padding)',
-  },
-  /* sprinkles({
-    borderRadius: 'large',
-    fontWeight: 'medium',
-    lineHeight: 'normal',
-  }), */
-  {
-    borderRadius: 'var(--space-large)',
-    fontWeight: 'var(--font-size-medium)',
-    lineHeight: 'var(--font-height-normal)',
+    borderRadius: vars.space.large,
+    fontWeight: vars.size.medium,
+    lineHeight: vars.height.normal,
   },
 ])
