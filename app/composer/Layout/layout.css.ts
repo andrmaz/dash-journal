@@ -1,11 +1,12 @@
-import {style} from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const wrapper = style({
   height: '100%',
   width: '100%',
   margin: '0 auto',
   display: 'flex',
-  backgroundColor: 'var(--background-color)',
+  backgroundColor: vars.theme.background,
 })
 export const container = style({
   height: '100%',

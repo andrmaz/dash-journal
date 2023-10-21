@@ -3,9 +3,8 @@ import * as React from 'react'
 import type {Client, Meeting} from '@prisma/client'
 import {SelectClients, SelectProjects} from '~/components/Select'
 
-import {Form} from '@remix-run/react'
+import {Form, useNavigation} from '@remix-run/react'
 import {formatDateTime} from '~/utils/date'
-import {useTransition} from '@remix-run/react'
 
 interface EventProps {
   event: Meeting | null
@@ -15,7 +14,7 @@ interface EventProps {
 export const Event = (props: EventProps) => {
   const {event, date} = props
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const disabled = transition.state === 'submitting'
 
   const [client, setClient] = React.useState<Client['id']>('')

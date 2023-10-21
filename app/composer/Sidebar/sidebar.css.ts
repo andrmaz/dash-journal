@@ -1,5 +1,5 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const wrapper = style([
   {
@@ -10,11 +10,6 @@ export const wrapper = style([
     placeItems: 'center',
     margin: 'auto 0',
     borderLeft: '1px solid',
-  },
-  /* sprinkles({
-    borderColor: 'dark',
-  }), */
-  {
-    borderColor: 'var(--color-foreground)',
+    borderColor: vars.pallette.dark,
   },
 ])

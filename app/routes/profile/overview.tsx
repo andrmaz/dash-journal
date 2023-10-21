@@ -1,5 +1,5 @@
 import {redirect} from '@remix-run/server-runtime'
-import {useTransition} from '@remix-run/react'
+import {useNavigation} from '@remix-run/react'
 
 import {formatDateUser} from '~/utils/date'
 import {getUserById} from '~/models/user.server'
@@ -24,7 +24,7 @@ export const loader = async (args: LoaderArgs) => {
 export default function Overview() {
   const loader = useTypedLoaderData<LoaderData>()
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const loading = transition.state === 'loading'
 
   return (

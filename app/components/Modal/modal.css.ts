@@ -1,5 +1,5 @@
-import {style} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const overlay = style({
   position: 'fixed',
@@ -19,14 +19,8 @@ export const backdrop = style([
     bottom: 0,
     right: 0,
     animation: 'fadeIn',
-  },
-  /* sprinkles({
-    backgroundColor: 'backdrop',
-    animationDuration: 'medium',
-  }), */
-  {
-    backgroundColor: 'var(--color-backdrop)',
-    animationDuration: 'var(--duration-medium)',
+    backgroundColor: vars.theme.backdrop,
+    animationDuration: vars.duration.medium,
   },
 ])
 export const content = style([
@@ -35,12 +29,7 @@ export const content = style([
     width: '25%',
     height: '100%',
     padding: '24px 32px',
-  },
-  /* sprinkles({
-    backgroundColor: 'background',
-  }), */
-  {
-    backgroundColor: 'var(--color-background)',
+    backgroundColor: vars.theme.background,
   },
 ])
 export const wrapper = style([
@@ -49,14 +38,8 @@ export const wrapper = style([
     display: 'flex',
     flexDirection: 'column',
     animation: 'fadeIn both',
-  },
-  /* sprinkles({
-    animationDuration: 'long',
-    animationDelay: 'short',
-  }), */
-  {
-    animationDuration: 'var(--duration-long)',
-    animationDelay: 'var(--duration-short)',
+    animationDuration: vars.duration.long,
+    animationDelay: vars.duration.short,
   },
 ])
 export const button = style([
@@ -78,13 +61,7 @@ export const button = style([
         outline: 'none',
       },
     },
-  },
-  /* sprinkles({
-    margin: 'none',
-    padding: 'large',
-  }), */
-  {
     margin: 0,
-    padding: 'var(--space-large)',
+    padding: vars.space.large,
   },
 ])

@@ -1,11 +1,8 @@
-import {style, styleVariants} from '@vanilla-extract/css'
-import {sprinkles} from '~/themes/sprinkles.css'
+import { style, styleVariants } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const wrapper = style([
   {
-    vars: {
-      '--width': '10rem',
-    },
     alignItems: 'center',
     boxShadow: 'var(--shadow)',
     border: 'var(--border)',
@@ -14,17 +11,10 @@ export const wrapper = style([
     gridTemplateColumns: 'repeat(3, 1fr)',
     height: '3.5rem',
     placeContent: 'center',
-    width: 'var(--width)',
-  },
-  /* sprinkles({
-    backgroundColor: 'background',
-    borderRadius: 'medium',
-    padding: 'medium',
-  }), */
-  {
-    backgroundColor: 'var(--color-background)',
-    borderRadius: 'var(--border-radius-medium)',
-    padding: 'var(--space-medium)',
+    width: '10rem',
+    backgroundColor: vars.theme.background,
+    borderRadius: vars.corner.medium,
+    padding: vars.space.medium,
   },
 ])
 export const label = style([
@@ -33,40 +23,33 @@ export const label = style([
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    width: 'calc(var(--width) * 0.66)',
-  },
-  /* sprinkles({
-    fontSize: 'small',
-    letterSpacing: 'normal',
-    marginLeft: 'medium',
-  }), */
-  {
-    fontSize: 'var(--font-size-small)',
-    letterSpacing: 'var(--font-spacing-normal)',
-    marginLeft: 'var(--space-medium)',
+    width: 'calc(10rem * 0.66)',
+    fontSize: vars.size.small,
+    letterSpacing: vars.spacing.dense,
+    marginLeft: vars.space.medium,
   },
 ])
 export const variants = styleVariants({
   text: {
-    color: 'var(--color-foreground)',
-    backgroundColor: 'var(--color-background)',
+    color: vars.theme.foreground,
+    backgroundColor: vars.theme.background,
     border: 0,
-    boxShadow: 'var(--shadow-x-large)',
+    boxShadow: vars.shadow['x-large'],
   },
   contained: {
-    color: 'var(--color-foreground)',
-    backgroundColor: 'var(--color-primary)',
+    color: vars.theme.foreground,
+    backgroundColor: vars.theme.primary,
     border: '0',
-    boxShadow: 'var(--shadow-x-large)',
+    boxShadow: vars.shadow['x-large'],
   },
   outlined: {
-    color: 'var(--color-foreground)',
-    backgroundColor: 'var(--color-background)',
-    border: '1px solid var(--color-primary)',
-    boxShadow: 'var(--shadow-outline)',
+    color: vars.theme.foreground,
+    backgroundColor: vars.theme.background,
+    border: `1px solid ${vars.theme.primary}`,
+    boxShadow: vars.shadow.outline,
   },
   none: {
-    color: 'var(--color-foreground)',
+    color: vars.theme.foreground,
     backgroundColor: 'transparent',
     border: 'none',
     boxShadow: 'none',

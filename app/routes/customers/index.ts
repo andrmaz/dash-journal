@@ -1,8 +1,7 @@
-import type {LoaderFunction} from '@remix-run/node'
-import {getClientList} from '~/models/client.server'
-import {getUserId} from '~/session.server'
-import {json} from '@remix-run/node'
-import {redirect} from '@remix-run/node'
+import type { LoaderFunction } from '@remix-run/node'
+import { getClientList } from '~/models/client.server'
+import { getUserId } from '~/session.server'
+import { json, redirect } from '@remix-run/node'
 
 export const loader: LoaderFunction = async args => {
   const userId = await getUserId(args.request)

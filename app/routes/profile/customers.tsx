@@ -1,4 +1,4 @@
-import {Outlet, useTransition} from '@remix-run/react'
+import {Outlet, useNavigation} from '@remix-run/react'
 import {redirect} from '@remix-run/server-runtime'
 
 import {Customer} from '~/components/Customer'
@@ -25,7 +25,7 @@ export const loader = async (args: LoaderArgs) => {
 export default function Customers() {
   const loader = useTypedLoaderData<LoaderData>()
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const disabled = transition.state === 'submitting'
   const loading = transition.state === 'loading'
 

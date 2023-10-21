@@ -1,21 +1,22 @@
-import {style} from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
+import { vars } from '../../themes/theme.css'
 
 export const button = style([
   {
     padding: '4px 16px',
     selectors: {
       '&:hover': {
-        borderRadius: 'var(--border-radius-tab)',
-        fontWeight: 'var(--font-weight-medium)',
+        borderRadius: vars.corner.tab,
+        fontWeight: vars.weight.medium,
         outline: 'none',
       },
       '&:focus': {
-        borderRadius: 'var(--border-radius-tab)',
-        fontWeight: 'var(--font-weight-medium)',
+        borderRadius: vars.corner.tab,
+        fontWeight: vars.weight.medium,
         outline: 'none',
       },
       '&[aria-selected=true]': {
-        borderBottomColor: 'var(--color-secondary)',
+        borderBottomColor: vars.theme.secondary,
         borderWidth: 0,
         borderBottomWidth: '4px',
       },
@@ -33,16 +34,16 @@ export const label = style({
     },
     [`${button}:hover &`]: {
       borderRadius: '4px',
-      border: '2px solid var(--color-tertiary)',
+      border: `2px solid ${vars.theme.tertiary}`,
       padding: '2px 4px',
     },
     [`${button}:focus &`]: {
       borderRadius: '4px',
-      border: '2px solid var(--color-tertiary)',
+      border: `2px solid ${vars.theme.tertiary}`,
       padding: '2px 4px',
     },
     [`${button}[aria-selected='true'] &`]: {
-      color: 'var(--color-primary)',
+      color: vars.theme.primary,
     },
   },
 })
