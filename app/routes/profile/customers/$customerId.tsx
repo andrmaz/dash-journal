@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import type {ActionFunction} from '@remix-run/server-runtime'
-import {useParams, useTransition} from '@remix-run/react'
+import {useParams, useNavigation} from '@remix-run/react'
 
 import {Accordion} from '~/components/Accordion'
 import {Path} from '~/data'
@@ -9,8 +9,7 @@ import {Project} from '~/components/Project'
 import {ProjectList} from '~/composer/ProjectList'
 import {deleteClient} from '~/models/client.server'
 import {getClientProjects} from '~/models/project.server'
-import {json} from '@remix-run/server-runtime'
-import {redirect} from '@remix-run/server-runtime'
+import {json, redirect} from '@remix-run/server-runtime'
 
 import type {LoaderArgs} from '@remix-run/node'
 import {typedjson, useTypedLoaderData} from 'remix-typedjson'
@@ -50,7 +49,7 @@ export default function Customer() {
   const params = useParams()
   const loader = useTypedLoaderData<LoaderData>()
 
-  const transition = useTransition()
+  const transition = useNavigation()
   const disabled = transition.state === 'submitting'
 
   const customer = React.useMemo(

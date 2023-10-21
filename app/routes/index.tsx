@@ -4,8 +4,7 @@ import {createMeeting, editMeeting} from '~/models/meeting.server'
 import type {Prisma} from '@prisma/client'
 import {formatDateInput} from '~/utils/date'
 import {getUserId} from '~/session.server'
-import {json} from '@remix-run/node'
-import {redirect} from '@remix-run/node'
+import {json, redirect} from '@remix-run/node'
 
 export const loader: LoaderFunction = async ({request}) => {
   const userId = await getUserId(request)
