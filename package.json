@@ -73,7 +73,7 @@
     "@vanilla-extract/css": "^1.13.0",
     "@vanilla-extract/vite-plugin": "^3.9.0",
     "@vitejs/plugin-react": "^4.0.1",
-    "@vitest/coverage-c8": "^0.28.5",
+    "@vitest/coverage-c8": "^0.33.0",
     "autoprefixer": "^10.4.16",
     "axe-playwright": "^1.1.12",
     "babel-loader": "^8.2.5",
