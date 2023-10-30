@@ -117,7 +117,7 @@ const breakpoints = {
   desktop: '1300',
 }
 
-export const vars = createGlobalTheme('#root', {
+export const vars = createGlobalTheme(':root', {
   space,
   pallette,
   theme,
