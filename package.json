@@ -55,7 +55,7 @@
     "@storybook/addon-links": "^7.1.0",
     "@storybook/addon-mdx-gfm": "^7.6.4",
     "@storybook/jest": "0.1.0",
-    "@storybook/react": "^7.0.5",
+    "@storybook/react": "^7.6.5",
     "@storybook/react-vite": "^7.3.2",
     "@storybook/test-runner": "^0.16.0",
     "@storybook/testing-library": "0.2.2",
