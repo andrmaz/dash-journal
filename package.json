@@ -65,7 +65,7 @@
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.4.3",
     "@types/bcryptjs": "^2.4.6",
-    "@types/eslint": "^8.56.1",
+    "@types/eslint": "^8.56.2",
     "@types/node": "^18.19.5",
     "@types/react": "^17.0.45",
     "@types/react-big-calendar": "^1.8.4",
