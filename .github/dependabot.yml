@@ -8,13 +8,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    reviewers:
-      - "andrmaz"
 
   # Maintain dependencies for npm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    reviewers:
-      - "andrmaz"
