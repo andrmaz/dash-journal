@@ -6,6 +6,10 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     if: github.actor == 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v4
