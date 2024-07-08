@@ -50,7 +50,7 @@
     "@remix-run/eslint-config": "^1.11.1",
     "@storybook/addon-a11y": "^7.6.5",
     "@storybook/addon-actions": "^7.6.17",
-    "@storybook/addon-essentials": "^7.6.12",
+    "@storybook/addon-essentials": "^8.1.11",
     "@storybook/addon-interactions": "^8.1.10",
     "@storybook/addon-links": "^8.1.11",
     "@storybook/addon-mdx-gfm": "^8.1.11",
