@@ -57,7 +57,7 @@
     "@storybook/jest": "0.2.3",
     "@storybook/react": "^7.6.10",
     "@storybook/react-vite": "^7.6.6",
-    "@storybook/test-runner": "^0.16.0",
+    "@storybook/test-runner": "^0.19.1",
     "@storybook/testing-library": "0.2.2",
     "@testing-library/cypress": "^8.0.7",
     "@testing-library/dom": "^9.3.1",
